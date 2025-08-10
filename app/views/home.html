@@ -53,7 +53,7 @@
 
       <div class="post-card__content">
         <p class="post-card__text">
-          <?php echo htmlspecialchars($post['content']); ?>
+          <?php echo htmlspecialchars($post['content'] ?? ''); ?>
         </p>
       </div>
     </a>
