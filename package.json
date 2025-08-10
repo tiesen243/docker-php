@@ -1,11 +1,11 @@
 {
   "name": "@tiesen243/docker-php",
-  "type": "module",
   "version": "1.0.0",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "format": "prettier --check \"**/*.{css,html,js,json,md,php}\" --write --cache",
     "build:tailwind": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/globals.css --minify",
+    "format": "prettier --check \"**/*.{css,html,js,json,md,php}\" --write --cache",
     "start": "docker compose up -d --build",
     "stop": "docker compose down -v"
   },
