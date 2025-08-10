@@ -1,0 +1,43 @@
+<main class="container grid min-h-dvh place-items-center">
+  <form
+    action="/posts/create"
+    method="post"
+    class="grid gap-4 min-w-xl p-6 rounded-lg border bg-card shadow-md"
+  >
+    <div class="grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5">
+      <h1 class="text-2xl font-bold">Create New Post</h1>
+      <p class="text-sm text-muted-foreground mb-4">
+        Fill in the details below to create a new blog post.
+      </p>
+    </div>
+
+    <div class="grid gap-2">
+      <label for="title" class="text-sm font-medium">Title</label>
+      <input
+        id="title"
+        name="title"
+        class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+        placeholder="Enter post title"
+        required
+      />
+    </div>
+
+    <div class="grid gap-2">
+      <label for="content" class="text-sm font-medium">Content</label>
+      <textarea
+        id="content"
+        name="content"
+        rows="4"
+        class="border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 flex field-sizing-content min-h-16 w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+        placeholder="Write your post content here..."
+        required
+      ></textarea>
+    </div>
+
+    <button
+      class="inline-flex items-center h-9 justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium transition-colors hover:bg-primary/90 px-4"
+    >
+      Create Post
+    </button>
+  </form>
+</main>

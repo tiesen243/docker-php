@@ -1,30 +1,54 @@
-<!doctype html>
-<html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<main class="container py-4">
+  <div class="flex justify-between mb-4 items-center">
+    <h1 class="text-2xl font-bold">Welcome to the Blog</h1>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
+    <a
+      href="/posts/new"
+      class="inline-flex items-center h-9 justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium transition-colors hover:bg-primary/90 px-4"
+    >
+      Create New Post
+    </a>
+  </div>
 
-    <link rel="stylesheet" href="/css/globals.css" />
+  <?php if (isset($posts) && count($posts) > 0): ?>
+  <div class="grid grid-cols-2 gap-4">
+    <?php foreach ($posts as $post): ?>
+    <a
+      href="/posts/<?php echo htmlspecialchars($post['id']); ?>"
+      class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm"
+    >
+      <div
+        class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
+      >
+        <h2 class="text-lg leading-none font-semibold">
+          <?php echo htmlspecialchars($post['title']); ?>
+        </h2>
+        <p class="text-sm text-muted-foreground">
+          <?php echo date('F j, Y', strtotime($post['created_at'])); ?>
+        </p>
 
-    <title>Home</title>
-  </head>
+        <form
+          data-slot="card-action"
+          action="/posts/<?php echo htmlspecialchars($post['id']); ?>/delete"
+          method="post"
+          class="col-start-2 z-10 row-span-2 row-start-1 self-start justify-self-end"
+        >
+          <button
+            type="submit"
+            class="inline-flex justify-center items-center size-9 bg-transparent hover:bg-accent hover:text-accent-foreground rounded-md transition-colors text-sm font-medium"
+          >
+            D
+          </button>
+        </form>
+      </div>
 
-  <body class="font-sans min-h-dvh flex flex-col antialiased">
-    <main class="container">
-      lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
-    </main>
-  </body>
-</html>
+      <div class="px-6">
+        <p><?php echo htmlspecialchars($post['content']); ?></p>
+      </div>
+    </a>
+    <?php endforeach; ?>
+  </div>
+  <?php else: ?>
+  <p class="text-gray-600">No posts available.</p>
+  <?php endif; ?>
+</main>
