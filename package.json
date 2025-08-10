@@ -1,6 +1,7 @@
 {
   "name": "@tiesen243/docker-php",
   "version": "1.0.0",
+  "description": "A Docker setup for PHP development with Composer, PHPUnit, and Prettier.",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -12,7 +13,6 @@
     "stop:prod": "docker compose -f docker-compose.prod.yml down -v",
     "test": "./vendor/bin/phpunit --display-warnings --display-deprecations"
   },
-  "dependencies": {},
   "devDependencies": {
     "@prettier/plugin-php": "^0.24.0",
     "prettier": "^3.6.2"

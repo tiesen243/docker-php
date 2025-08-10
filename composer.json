@@ -1,7 +1,9 @@
 {
   "name": "tiesen243/docker-php",
   "version": "1.0.0",
+  "description": "A Docker setup for PHP development with Composer, PHPUnit, and Prettier.",
   "license": "MIT",
+  "type": "project",
   "autoload": {
     "psr-4": {
       "App\\": "app/",
