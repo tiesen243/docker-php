@@ -1,0 +1,10 @@
+FROM php:apache
+
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+RUN a2enmod rewrite
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+
+WORKDIR /var/www/html/public
+
+EXPOSE 80
