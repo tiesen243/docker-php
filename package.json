@@ -6,8 +6,8 @@
   "scripts": {
     "format": "prettier --check \"**/*.{css,html,js,json,md,php}\" --write --cache",
     "postinstall": "composer install",
-    "start": "docker compose up -d",
-    "start:prod": "docker compose -f docker-compose.prod.yml up -d",
+    "start": "docker compose up -d --remove-orphans",
+    "start:prod": "docker compose -f docker-compose.prod.yml up -d --remove-orphans",
     "stop": "docker compose down -v",
     "stop:prod": "docker compose -f docker-compose.prod.yml down -v",
     "test": "./vendor/bin/phpunit --display-warnings --display-deprecations"
