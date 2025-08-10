@@ -1,2 +1,6 @@
+# Dependencies
 node_modules/
 vendor/
+
+# Test files
+tests/
