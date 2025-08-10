@@ -10,7 +10,7 @@ services:
     volumes:
       - './:/var/www/html'
     ports:
-      - 3000:80
+      - 8080:80
       - 443:443
     depends_on:
       db:
@@ -35,7 +35,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - 8000:80
+      - 8081:80
     environment:
       - PMA_HOST=db
       - PMA_PORT=3306

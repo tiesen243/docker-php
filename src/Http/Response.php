@@ -19,4 +19,9 @@ class Response
   {
     echo $this->content;
   }
+
+  public function getContent(): ?string
+  {
+    return $this->content;
+  }
 }

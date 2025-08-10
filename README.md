@@ -7,7 +7,6 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 - **PHP 8.2** with Apache web server
 - **MySQL 8.0** database
 - **phpMyAdmin** for database management
-- **Hot reloading** - changes reflected instantly
 - **Environment-based configuration**
 - **Volume persistence** for database data
 
@@ -95,7 +94,7 @@ docker-php/
 
 ### Web Server (Apache + PHP 8.2)
 
-- **Port**: 3000
+- **Port**: 8080
 - **Document Root**: `/var/www/html` (mapped to `./public`)
 - **PHP Extensions**: Common extensions pre-installed
 
@@ -107,7 +106,7 @@ docker-php/
 
 ### phpMyAdmin
 
-- **Port**: 8000
+- **Port**: 8081
 - **Purpose**: Web-based MySQL administration
 
 ## 🔒 Security Notes
