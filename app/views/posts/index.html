@@ -1,29 +1,24 @@
-<main class="container py-4">
-  <div class="mb-6 flex items-center justify-between">
-    <a
-      href="/"
-      class="inline-flex items-center text-sm underline-offset-4 hover:underline"
-    >
-      &leftarrow; Back to Posts
-    </a>
+<link rel="stylesheet" href="/css/posts/index.css" />
+
+<main class="container post-page">
+  <div class="post-page__header">
+    <a href="/" class="post-page__back-btn"> &leftarrow; Back to Posts </a>
 
     <a
       href="/posts/<?php echo htmlspecialchars($post['id']); ?>/edit"
-      class="inline-flex h-9 items-center rounded-md bg-secondary px-4 text-secondary-foreground transition-colors hover:bg-secondary/90"
+      class="post-page__edit-btn"
     >
       Edit Post
     </a>
   </div>
 
-  <article class="mx-auto max-w-prose">
-    <h1 class="mb-2 text-2xl font-bold">
-      <?php echo htmlspecialchars($title); ?>
-    </h1>
-    <p class="text-sm text-muted-foreground">
+  <article class="post-page__article">
+    <h1 class="post-page__title"><?php echo htmlspecialchars($title); ?></h1>
+    <p class="post-page__date">
       <?php echo date('F j, Y', strtotime($post['created_at'])); ?>
     </p>
 
-    <hr class="my-4" />
+    <hr class="post-page__separator" />
 
     <p><?php echo htmlspecialchars($post['content']); ?></p>
   </article>

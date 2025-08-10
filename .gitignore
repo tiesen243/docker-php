@@ -26,4 +26,3 @@ build/
 dist/
 cache/
 tmp/
-public/css/globals.css

@@ -1,0 +1,186 @@
+.post-form {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+}
+
+.post-form__form {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: 36rem;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  box-shadow: var(--shadow-md);
+}
+
+.post-form__header {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 0.375rem;
+  align-items: start;
+}
+
+.post-form__title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: var(--card-foreground);
+}
+
+.post-form__description {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--muted-foreground);
+}
+
+.post-form__field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.post-form__label {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.post-form__input {
+  display: flex;
+  height: 2.25rem;
+  width: 100%;
+  min-width: 0;
+  border-radius: var(--radius);
+  border: 1px solid var(--input);
+  background-color: transparent;
+  color: var(--foreground);
+  padding: 0.25rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  box-shadow: var(--shadow-xs);
+  transition:
+    color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  outline: none;
+}
+
+.post-form__input::selection {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.post-form__input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.post-form__input:focus-visible {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+.post-form__input:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.post-form__input[aria-invalid='true'] {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
+}
+
+.post-form__textarea {
+  display: flex;
+  field-sizing: content;
+  min-height: 6rem;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--input);
+  background-color: transparent;
+  color: var(--foreground);
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  box-shadow: var(--shadow-xs);
+  transition:
+    color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  outline: none;
+}
+
+.post-form__textarea::selection {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.post-form__textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+.post-form__textarea:focus-visible {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+.post-form__textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.post-form__textarea[aria-invalid='true'] {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 20%, transparent);
+}
+
+.post-form__submit {
+  display: inline-flex;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  background-color: var(--primary);
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: var(--primary-foreground);
+  transition: colors 0.15s ease-in-out;
+  border: none;
+  cursor: pointer;
+}
+
+.post-form__submit:hover {
+  background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+}
+
+@media (min-width: 768px) {
+  .post-form__input {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .post-form__textarea {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+.dark .post-form__input {
+  background-color: color-mix(in oklab, var(--input) 30%, transparent);
+}
+
+.dark .post-form__textarea {
+  background-color: color-mix(in oklab, var(--input) 30%, transparent);
+}
+
+.dark .post-form__input[aria-invalid='true'] {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 40%, transparent);
+}
+
+.dark .post-form__textarea[aria-invalid='true'] {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--destructive) 40%, transparent);
+}

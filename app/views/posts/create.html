@@ -1,42 +1,36 @@
-<main class="container grid min-h-dvh place-items-center">
-  <form
-    action="/posts/create"
-    method="post"
-    class="grid min-w-xl gap-4 rounded-lg border bg-card p-6 shadow-md"
-  >
-    <div class="grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5">
-      <h1 class="text-2xl font-bold">Create New Post</h1>
-      <p class="mb-4 text-sm text-muted-foreground">
+<link rel="stylesheet" href="/css/posts/form.css" />
+
+<main class="container post-form">
+  <form action="/posts/create" method="post" class="post-form__form">
+    <div class="post-form__header">
+      <h1 class="post-form__title">Create New Post</h1>
+      <p class="post-form__description">
         Fill in the details below to create a new blog post.
       </p>
     </div>
 
-    <div class="grid gap-2">
-      <label for="title" class="text-sm font-medium">Title</label>
+    <div class="post-form__field">
+      <label for="title" class="post-form__label">Title</label>
       <input
         id="title"
         name="title"
-        class="flex h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:aria-invalid:ring-destructive/40"
+        class="post-form__input"
         placeholder="Enter post title"
         required
       />
     </div>
 
-    <div class="grid gap-2">
-      <label for="content" class="text-sm font-medium">Content</label>
+    <div class="post-form__field">
+      <label for="content" class="post-form__label">Content</label>
       <textarea
         id="content"
         name="content"
-        class="flex field-sizing-content min-h-16 w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:aria-invalid:ring-destructive/40"
+        class="post-form__textarea"
         placeholder="Write your post content here..."
         required
       ></textarea>
     </div>
 
-    <button
-      class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-    >
-      Create Post
-    </button>
+    <button class="post-form__submit">Create Post</button>
   </form>
 </main>

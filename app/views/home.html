@@ -1,29 +1,24 @@
-<main class="container py-4">
-  <div class="mb-4 flex items-center justify-between">
-    <h1 class="text-2xl font-bold">Welcome to the Blog</h1>
+<link rel="stylesheet" href="/css/home.css" />
 
-    <a
-      href="/posts/new"
-      class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-    >
-      Create New Post
-    </a>
+<main class="container blog">
+  <div class="blog__header">
+    <h1 class="blog__title">Welcome to the Blog</h1>
+
+    <a href="/posts/new" class="blog__create-btn"> Create New Post </a>
   </div>
 
   <?php if (isset($posts) && count($posts) > 0): ?>
-  <div class="grid grid-cols-2 gap-4">
+  <div class="posts">
     <?php foreach ($posts as $post): ?>
     <a
       href="/posts/<?php echo htmlspecialchars($post['id']); ?>"
-      class="flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-sm"
+      class="post-card"
     >
-      <div
-        class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
-      >
-        <h2 class="text-lg leading-none font-semibold">
+      <div class="post-card__header">
+        <h2 class="post-card__title">
           <?php echo htmlspecialchars($post['title']); ?>
         </h2>
-        <p class="text-sm text-muted-foreground">
+        <p class="post-card__date">
           <?php echo date('F j, Y', strtotime($post['created_at'])); ?>
         </p>
 
@@ -31,24 +26,21 @@
           data-slot="card-action"
           action="/posts/<?php echo htmlspecialchars($post['id']); ?>/delete"
           method="post"
-          class="z-10 col-start-2 row-span-2 row-start-1 self-start justify-self-end"
+          class="post-card__delete-form"
         >
-          <button
-            type="submit"
-            class="inline-flex size-9 items-center justify-center rounded-md bg-transparent text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-          >
-            D
-          </button>
+          <button type="submit" class="post-card__delete-btn">D</button>
         </form>
       </div>
 
-      <div class="px-6">
-        <p><?php echo htmlspecialchars($post['content']); ?></p>
+      <div class="post-card__content">
+        <p class="post-card__text">
+          <?php echo htmlspecialchars($post['content']); ?>
+        </p>
       </div>
     </a>
     <?php endforeach; ?>
   </div>
   <?php else: ?>
-  <p class="text-gray-600">No posts available.</p>
+  <p class="blog__no-posts">No posts available.</p>
   <?php endif; ?>
 </main>

@@ -1,0 +1,60 @@
+.post-page {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.post-page__header {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.post-page__back-btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.post-page__back-btn:hover {
+  text-decoration: underline;
+}
+
+.post-page__edit-btn {
+  display: inline-flex;
+  height: 2.25rem;
+  align-items: center;
+  border-radius: calc(var(--radius) - 2px);
+  background-color: var(--secondary);
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--secondary-foreground);
+  transition: background-color 0.2s;
+}
+
+.post-page__edit-btn:hover {
+  background-color: color-mix(in oklab, var(--secondary) 90%, transparent);
+}
+
+.post-page__article {
+  margin: 0 auto;
+  max-width: 65ch;
+}
+
+.post-page__title {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.post-page__date {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.post-page__separator {
+  margin: 1rem 0;
+}

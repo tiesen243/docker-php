@@ -4,7 +4,6 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build:tailwind": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/globals.css --minify",
     "format": "prettier --check \"**/*.{css,html,js,json,md,php}\" --write --cache",
     "start": "docker compose up -d --build",
     "stop": "docker compose down -v"
@@ -12,9 +11,6 @@
   "dependencies": {},
   "devDependencies": {
     "@prettier/plugin-php": "^0.24.0",
-    "@tailwindcss/cli": "^4.1.11",
-    "prettier": "^3.6.2",
-    "prettier-plugin-tailwindcss": "^0.6.14",
-    "tailwindcss": "^4.1.11"
+    "prettier": "^3.6.2"
   }
 }
