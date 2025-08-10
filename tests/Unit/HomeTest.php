@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use App\controllers\HomeController;
 use Yuki\Http\Response;
 
-class RouterTest extends TestCase
+class HomeTest extends TestCase
 {
   public function testIndexReturnsHomeViewWithPosts(): void
   {
