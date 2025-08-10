@@ -26,7 +26,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.3'
           extensions: mbstring, intl, pdo_mysql
           ini-values: post_max_size=256M, upload_max_filesize=256M
           coverage: xdebug
