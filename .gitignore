@@ -21,6 +21,11 @@ vendor/
 ehthumbs.db
 Thumbs.db
 
+# IDE specific
+.idea/
+.vscode/
+*.sublime-workspace
+
 # Build and cache directories
 build/
 dist/
