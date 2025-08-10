@@ -46,7 +46,9 @@ class Kernel
         }
         return call_user_func_array([$controller, $method], $vars);
       default:
-        return new Response('Not Found', 404, ['Content-Type' => 'text/plain']);
+        return new Response('Not Found', 404, [
+          'Content-Type' => 'text/plain',
+        ]);
     }
   }
 }
