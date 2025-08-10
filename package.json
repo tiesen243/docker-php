@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "format": "prettier --check \"**/*.{css,html,js,json,md,php}\" --write --cache",
+    "postinstall": "composer install",
     "start": "docker compose up -d",
     "stop": "docker compose down -v"
   },

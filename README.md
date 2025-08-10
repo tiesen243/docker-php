@@ -15,6 +15,8 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 
 - [Docker](https://docs.docker.com/get-docker/) installed
 - [Docker Compose](https://docs.docker.com/compose/install/) installed
+- [Composer](https://getcomposer.org/download/) installed (for PHP dependencies)
+- [Node.js](https://nodejs.org/en/download/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed (for development dependencies)
 
 ## 🛠️ Setup
 
@@ -28,10 +30,8 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 2. **Install development dependencies**
 
    ```bash
-   # Install PHP dependencies and generate vendor directory
-   composer install
-
-   # Install Prettier and PHP formatting configuration
+   # Install Prettier and prettier-plugin-php for PHP code formatting,
+   # then run composer install after npm install (triggered in postinstall script)
    npm install
    ```
 
