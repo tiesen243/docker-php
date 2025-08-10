@@ -67,8 +67,8 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 
 ## 🌐 Access Points
 
-- **Web Application**: http://localhost:3000
-- **phpMyAdmin**: http://localhost:8000
+- **Web Application**: http://localhost:8080
+- **phpMyAdmin**: http://localhost:8081
   - Server: `db`
   - Username: Value from `DB_USER` in `.env`
   - Password: Value from `DB_PASSWORD` in `.env`
