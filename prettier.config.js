@@ -1,7 +1,9 @@
-/** @typedef {import("prettier").Config} PrettierConfig */
-/** @typedef {import("@prettier/plugin-php").Plugin} PHPConfig */
+import { fileURLToPath } from 'node:url'
 
-/** @type { PrettierConfig | SortImportsConfig | TailwindConfig } */
+/** @typedef {import("prettier").Config} PrettierConfig */
+/** @typedef {import("prettier-plugin-tailwindcss").PluginOptions} TailwindConfig */
+
+/** @type { PrettierConfig | TailwindConfig } */
 const config = {
   /* General Prettier Config */
   semi: false,
@@ -11,7 +13,11 @@ const config = {
   trailingComma: 'all',
   jsxSingleQuote: true,
 
-  plugins: ['@prettier/plugin-php'],
+  plugins: ['@prettier/plugin-php', 'prettier-plugin-tailwindcss'],
+
+  tailwindStylesheet: fileURLToPath(
+    new URL('public/css/tailwind.css', import.meta.url),
+  ),
 }
 
 export default config

@@ -1,10 +1,10 @@
 <main class="container py-4">
-  <div class="flex justify-between mb-4 items-center">
+  <div class="mb-4 flex items-center justify-between">
     <h1 class="text-2xl font-bold">Welcome to the Blog</h1>
 
     <a
       href="/posts/new"
-      class="inline-flex items-center h-9 justify-center rounded-md bg-primary text-primary-foreground text-sm font-medium transition-colors hover:bg-primary/90 px-4"
+      class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
     >
       Create New Post
     </a>
@@ -15,7 +15,7 @@
     <?php foreach ($posts as $post): ?>
     <a
       href="/posts/<?php echo htmlspecialchars($post['id']); ?>"
-      class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm"
+      class="flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-sm"
     >
       <div
         class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
@@ -31,11 +31,11 @@
           data-slot="card-action"
           action="/posts/<?php echo htmlspecialchars($post['id']); ?>/delete"
           method="post"
-          class="col-start-2 z-10 row-span-2 row-start-1 self-start justify-self-end"
+          class="z-10 col-start-2 row-span-2 row-start-1 self-start justify-self-end"
         >
           <button
             type="submit"
-            class="inline-flex justify-center items-center size-9 bg-transparent hover:bg-accent hover:text-accent-foreground rounded-md transition-colors text-sm font-medium"
+            class="inline-flex size-9 items-center justify-center rounded-md bg-transparent text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
           >
             D
           </button>

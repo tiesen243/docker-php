@@ -1,12 +1,22 @@
 <main class="container py-4">
-  <a
-    href="/"
-    class="hover:underline inline-flex items-center text-sm mb-6 underline-offset-4"
-  >
-    &leftarrow; Back to Posts
-  </a>
-  <article class="max-w-prose mx-auto">
-    <h1 class="text-2xl font-bold mb-2">
+  <div class="mb-6 flex items-center justify-between">
+    <a
+      href="/"
+      class="inline-flex items-center text-sm underline-offset-4 hover:underline"
+    >
+      &leftarrow; Back to Posts
+    </a>
+
+    <a
+      href="/posts/<?php echo htmlspecialchars($post['id']); ?>/edit"
+      class="inline-flex h-9 items-center rounded-md bg-secondary px-4 text-secondary-foreground transition-colors hover:bg-secondary/90"
+    >
+      Edit Post
+    </a>
+  </div>
+
+  <article class="mx-auto max-w-prose">
+    <h1 class="mb-2 text-2xl font-bold">
       <?php echo htmlspecialchars($title); ?>
     </h1>
     <p class="text-sm text-muted-foreground">
