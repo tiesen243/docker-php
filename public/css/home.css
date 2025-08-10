@@ -108,6 +108,11 @@
   cursor: pointer;
 }
 
+.post-card__delete-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
 .post-card__delete-btn:hover {
   background-color: var(--accent);
   color: var(--accent-foreground);
@@ -127,4 +132,6 @@
 
 .blog__no-posts {
   color: var(--muted-foreground);
+  text-align: center;
+  margin: 2rem 0;
 }
