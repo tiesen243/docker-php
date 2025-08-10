@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\controllers;
 
 use Yuki\Core\Controller;
 
@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
   public function index()
   {
-    return $this->render('page');
+    return $this->render('home');
   }
 }

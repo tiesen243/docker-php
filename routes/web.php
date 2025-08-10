@@ -1,5 +1,5 @@
 <?php
 
-use App\Controllers\HomeController;
+use App\controllers\HomeController;
 
 return [['GET', '/', [HomeController::class, 'index']]];

@@ -8,7 +8,7 @@ abstract class Controller
 {
   public function render(string $template, ?array $data = []): Response
   {
-    $viewPath = BASE_PATH . '/resources/views/' . $template . '.html';
+    $viewPath = BASE_PATH . '/app/views/' . $template . '.html';
 
     if (!file_exists($viewPath)) {
       return new Response('View not found', 404, [
