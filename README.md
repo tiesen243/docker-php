@@ -97,10 +97,10 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 ### Web Server (Apache + PHP 8.2)
 
 - **Port**: 8080
-- **Document Root**: `/var/www/html` (mapped to `./public`)
+- **Document Root**: `/var/www/html` (mapped to the local project root in development mode only)
 - **PHP Extensions**: Common extensions pre-installed
 
-### Database (MySQL 8.0)
+### Database (MySQL 9.4.0)
 
 - **Port**: 3306 (internal)
 - **Data Persistence**: `db_data` volume
