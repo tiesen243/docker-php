@@ -2,7 +2,7 @@
 
 A containerized PHP development environment with Apache, MySQL, and phpMyAdmin using Docker Compose.
 
-## 🚀 Features
+## Features
 
 - **PHP 8.2** with Apache web server
 - **MySQL 8.0** database
@@ -10,27 +10,26 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 - **Environment-based configuration**
 - **Volume persistence** for database data
 
-## 📋 Prerequisites
+## Prerequisites
 
 - [Docker](https://docs.docker.com/get-docker/) installed
 - [Docker Compose](https://docs.docker.com/compose/install/) installed
 - [Composer](https://getcomposer.org/download/) installed (for PHP dependencies)
-- [Node.js](https://nodejs.org/en/download/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed (for development dependencies)
+- [Node.js](https://nodejs.org/en/download/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed (optional, for development tools)
 
-## 🛠️ Setup
+## Setup
 
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
-   cd docker-php
+   git clone <repository-url> [your-app-name]
+   cd [your-app-name]
    ```
 
-2. **Install development dependencies**
+2. **Install development dependencies (optional)**
 
    ```bash
    # Install Prettier and prettier-plugin-php for PHP code formatting,
-   # then run composer install after npm install (triggered in postinstall script)
    npm install
    ```
 
@@ -69,7 +68,7 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
    composer prod:down
    ```
 
-## 🌐 Access Points
+## Access Points
 
 - **Web Application**: http://localhost:8080
 - **phpMyAdmin**: http://localhost:8081
@@ -93,7 +92,7 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 └── .env                        # Actual environment variables file (from example)
 ```
 
-## 🐳 Docker Services
+## Docker Services
 
 ### Web Server (Apache + PHP 8.2)
 
