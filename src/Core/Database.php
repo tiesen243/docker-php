@@ -28,7 +28,7 @@ class Database
     return self::$instance;
   }
 
-  public static function getInstance(): PDO
+  public static function getPdo(): PDO
   {
     return self::$instance->pdo ??
       throw new \Exception('Database connection not initialized');

@@ -1,17 +1,19 @@
 <link rel="stylesheet" href="/css/posts/form.css" />
 
 <main class="container post-form">
-  <form
-    action="/posts/<?php echo htmlspecialchars($post['id']); ?>/update"
-    method="post"
-    class="post-form__form"
-  >
+  <form action="/posts" method="post" class="post-form__form">
     <div class="post-form__header">
       <h1 class="post-form__title">Update Post</h1>
       <p class="post-form__description">
         Update the details below to modify your blog post.
       </p>
     </div>
+
+    <input
+      type="hidden"
+      name="id"
+      value="<?php echo htmlspecialchars($post['id']); ?>"
+    />
 
     <div class="post-form__field">
       <label for="title" class="post-form__label">Title</label>

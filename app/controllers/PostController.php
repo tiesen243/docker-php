@@ -2,22 +2,15 @@
 
 namespace App\controllers;
 
-use App\models\PostModel;
+use App\models\Post;
 use Framework\Core\Controller;
 use Framework\Http\Response;
 
 class PostController extends Controller
 {
-  private PostModel $post;
-
-  public function __construct()
-  {
-    $this->post = new PostModel();
-  }
-
   public function index(): Response
   {
-    $posts = $this->post->all();
+    $posts = Post::findMany();
 
     return $this->render('posts/index', [
       'posts' => $posts,
@@ -28,13 +21,13 @@ class PostController extends Controller
 
   public function all(): Response
   {
-    $posts = $this->post->all();
+    $posts = Post::findMany();
     return $this->json($posts);
   }
 
   public function show(string $id): Response
   {
-    $post = $this->post->byId($id);
+    $post = Post::findOne($id);
 
     if (!$post) {
       return $this->render('_error', [
@@ -57,29 +50,9 @@ class PostController extends Controller
     ]);
   }
 
-  public function store(): Response
-  {
-    $body = $this->request->getServerInfo()['post'];
-
-    $id = $this->post->create([
-      'title' => $body['title'] ?? '',
-      'content' => $body['content'] ?? '',
-    ]);
-
-    if (!$id) {
-      return new Response('Failed to create post', 500, [
-        'Content-Type' => 'text/plain',
-      ]);
-    }
-
-    return new Response(null, 302, [
-      'Location' => '/posts/' . $id,
-    ]);
-  }
-
   public function edit(string $id): Response
   {
-    $post = $this->post->byId($id);
+    $post = Post::findOne($id);
 
     if (!$post) {
       return $this->render('_error', [
@@ -95,36 +68,34 @@ class PostController extends Controller
     ]);
   }
 
-  public function update(string $id): Response
+  public function store(): Response
   {
-    $body = $this->request->getServerInfo()['post'];
+    $body = $this->request->body();
+    $post = new Post([
+      'id' => $body['id'] ?? '',
+      'title' => $body['title'] ?? '',
+      'content' => $body['content'] ?? '',
+    ]);
 
-    if (
-      !$this->post->update($id, [
-        'title' => $body['title'] ?? '',
-        'content' => $body['content'] ?? '',
-      ])
-    ) {
-      return new Response('Failed to update post', 500, [
-        'Content-Type' => 'text/plain',
-      ]);
-    }
+    $post->save();
 
     return new Response(null, 302, [
-      'Location' => '/posts/' . $id,
+      'Location' => '/posts/' . $post->id,
     ]);
   }
 
   public function delete(string $id): Response
   {
-    if (!$this->post->delete($id)) {
-      return new Response('Failed to delete post', 500, [
-        'Content-Type' => 'text/plain',
+    $post = new Post(['id' => $id]);
+    if ($post->delete()) {
+      return new Response(null, 302, [
+        'Location' => '/posts',
+      ]);
+    } else {
+      return $this->render('_error', [
+        'message' => 'Error',
+        'details' => 'Failed to delete the post. It may not exist.',
       ]);
     }
-
-    return new Response(null, 302, [
-      'Location' => '/posts',
-    ]);
   }
 }
