@@ -4,6 +4,14 @@
   "description": "A Docker setup for PHP development with Composer, PHPUnit, and Prettier.",
   "license": "MIT",
   "type": "project",
+  "scripts": {
+    "dev:up": "docker compose -f docker-compose.dev.yml up -d --remove-orphans",
+    "dev:down": "docker compose -f docker-compose.dev.yml down -v",
+    "format": "./node_modules/.bin/prettier --check \"**/*.{css,html,js,json,md,php}\" --write --cache",
+    "prod:up": "docker compose -f docker-compose.prod.yml up -d --remove-orphans",
+    "prod:down": "docker compose -f docker-compose.prod.yml down -v",
+    "test": "./vendor/bin/phpunit --display-warnings --display-deprecations"
+  },
   "autoload": {
     "psr-4": {
       "App\\": "app/",

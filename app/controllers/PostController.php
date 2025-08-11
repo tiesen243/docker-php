@@ -19,6 +19,12 @@ class PostController extends Controller
   {
     $post = $this->post->byId($id);
 
+    if (!$post) {
+      return $this->render('_error', [
+        'message' => '404',
+        'details' => 'The post you are looking for does not exist.',
+      ]);
+    }
     return $this->render('posts/index', [
       'post' => $post,
       'title' => $post['title'] ?? 'Post Not Found',
@@ -59,8 +65,9 @@ class PostController extends Controller
     $post = $this->post->byId($id);
 
     if (!$post) {
-      return new Response('Post not found', 404, [
-        'Content-Type' => 'text/plain',
+      return $this->render('_error', [
+        'message' => '404',
+        'details' => 'The post you are trying to edit does not exist.',
       ]);
     }
 

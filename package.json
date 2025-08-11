@@ -4,15 +4,6 @@
   "description": "A Docker setup for PHP development with Composer, PHPUnit, and Prettier.",
   "license": "MIT",
   "type": "module",
-  "scripts": {
-    "format": "prettier --check \"**/*.{css,html,js,json,md,php}\" --write --cache",
-    "postinstall": "composer install",
-    "start": "docker compose up -d --remove-orphans",
-    "start:prod": "docker compose -f docker-compose.prod.yml up -d --remove-orphans",
-    "stop": "docker compose down -v",
-    "stop:prod": "docker compose -f docker-compose.prod.yml down -v",
-    "test": "./vendor/bin/phpunit --display-warnings --display-deprecations"
-  },
   "devDependencies": {
     "@prettier/plugin-php": "^0.24.0",
     "prettier": "^3.6.2"

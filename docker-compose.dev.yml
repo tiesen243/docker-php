@@ -2,7 +2,7 @@ services:
   www:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     environment:
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}

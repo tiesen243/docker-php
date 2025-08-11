@@ -52,17 +52,21 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 5. **Start the containers**
 
    ```bash
-   docker-compose up -d
-   # or
-   npm run start
+   # For development
+   composer dev:up
+
+   # For production
+   composer prod:up
    ```
 
 6. **Stopping the containers**
 
    ```bash
-   docker-compose down
-   # or
-   npm run stop
+   # For development
+   composer dev:down
+
+   # For production
+   composer prod:down
    ```
 
 ## 🌐 Access Points
@@ -75,19 +79,18 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 
 ## 📁 Project Structure
 
-```
-docker-php/
-├── app/                 # Application source code (controller, models, views)
-├── database/            # Database migrations and seeds
-├── public/              # Publicly accessible files (index.php, css, js)
-├── routes/              # Application routes
-├── src/                 # PHP application code
-├── Dockerfile           # Dockerfile for building the PHP image
-├── docker-compose.yml   # Docker services configuration
-├── .env.example         # Environment variables template
-├── .env                 # Environment variables (create from example)
-├── .gitignore           # Git ignore rules
-└── README.md            # This file
+```plaintext
+├── app/                        # Application source code (controllers, models, views)
+├── database/                   # Database SQL files, migrations, and seed data
+├── public/                     # Public web root (index.php, CSS, JS, favicon, etc.)
+├── routes/                     # Application route definitions
+├── src/                        # Core framework and HTTP handling code
+├── tests/                      # Unit, feature, and integration tests
+├── Dockerfile.dev              # Development PHP image configuration
+├── Dockerfile.prod             # Production PHP image configuration
+├── docker-compose.dev.yml      # Docker Compose config for development services
+├── docker-compose.prod.yml     # Docker Compose config for production services
+└── .env                        # Actual environment variables file (from example)
 ```
 
 ## 🐳 Docker Services
@@ -108,13 +111,6 @@ docker-php/
 
 - **Port**: 8081
 - **Purpose**: Web-based MySQL administration
-
-## 🔒 Security Notes
-
-- Change default database credentials in production
-- Use strong passwords (generate with `openssl rand -base64 32`)
-- Don't commit `.env` file to version control
-- Consider using Docker secrets for production deployments
 
 ## 📄 License
 

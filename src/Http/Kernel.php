@@ -45,10 +45,31 @@ class Kernel
           $controller->setRequest($request);
         }
         return call_user_func_array([$controller, $method], $vars);
+      case \FastRoute\Dispatcher::NOT_FOUND:
+        $errorController = new ErrorController();
+        return $errorController->notFound();
       default:
-        return new Response('Not Found', 404, [
-          'Content-Type' => 'text/plain',
-        ]);
+        $errorController = new ErrorController();
+        return $errorController->serverError();
     }
+  }
+}
+
+class ErrorController extends Controller
+{
+  public function notFound(): Response
+  {
+    return $this->render('_error', [
+      'message' => '404',
+      'details' => 'The requested page could not be found.',
+    ]);
+  }
+
+  public function serverError(): Response
+  {
+    return $this->render('_error', [
+      'message' => 'Oops!',
+      'details' => 'An unexpected error occurred.',
+    ]);
   }
 }

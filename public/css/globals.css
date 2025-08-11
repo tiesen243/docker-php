@@ -1,3 +1,81 @@
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-underline-offset: 4px;
+  border-color: var(--border);
+  outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Geist', sans-serif;
+  letter-spacing: var(--tracking-normal);
+  line-height: 1.5;
+  min-height: 100dvh;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Color Palette */
 :root {
   --background: oklch(0.99 0 0);
   --foreground: oklch(0 0 0);
@@ -133,4 +211,37 @@
   .container {
     max-width: 1400px;
   }
+}
+
+.toggle-theme {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--foreground);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(var(--radius) - 2px);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.toggle-theme svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.light .toggle-theme .lucide-moon {
+  display: none;
+}
+
+.dark .toggle-theme .lucide-sun {
+  display: none;
+}
+
+.toggle-theme:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
 }
