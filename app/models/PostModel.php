@@ -3,7 +3,8 @@
 namespace App\models;
 
 use PDO;
-use Yuki\Core\Database;
+
+use Framework\Core\Database;
 
 class PostModel
 {

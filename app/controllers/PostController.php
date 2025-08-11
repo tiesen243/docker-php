@@ -3,8 +3,8 @@
 namespace App\controllers;
 
 use App\models\PostModel;
-use Yuki\Core\Controller;
-use Yuki\Http\Response;
+use Framework\Core\Controller;
+use Framework\Http\Response;
 
 class PostController extends Controller
 {
@@ -13,6 +13,17 @@ class PostController extends Controller
   public function __construct()
   {
     $this->post = new PostModel();
+  }
+
+  public function index(): Response
+  {
+    $posts = $this->post->all();
+
+    return $this->render('posts/index', [
+      'posts' => $posts,
+      'title' => 'Posts',
+      'description' => 'List of all posts.',
+    ]);
   }
 
   public function show(string $id): Response
@@ -25,7 +36,7 @@ class PostController extends Controller
         'details' => 'The post you are looking for does not exist.',
       ]);
     }
-    return $this->render('posts/index', [
+    return $this->render('posts/[id]/index', [
       'post' => $post,
       'title' => $post['title'] ?? 'Post Not Found',
       'description' => $post['description'] ?? 'No description available.',
@@ -71,7 +82,7 @@ class PostController extends Controller
       ]);
     }
 
-    return $this->render('posts/edit', [
+    return $this->render('posts/[id]/edit', [
       'post' => $post,
       'title' => 'Edit Post',
       'description' => 'Edit the post details.',

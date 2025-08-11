@@ -1,7 +1,7 @@
 <?php
 
-use Yuki\Http\Kernel;
-use Yuki\Http\Request;
+use Framework\Http\Kernel;
+use Framework\Http\Request;
 
 define('BASE_PATH', dirname(__DIR__));
 

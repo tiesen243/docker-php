@@ -6,6 +6,7 @@ use App\controllers\PostController;
 return [
   ['GET', '/', [HomeController::class, 'index']],
 
+  ['GET', '/posts', [PostController::class, 'index']],
   ['GET', '/posts/new', [PostController::class, 'create']],
   ['POST', '/posts/create', [PostController::class, 'store']],
   ['GET', '/posts/{id}', [PostController::class, 'show']],

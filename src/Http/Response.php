@@ -1,6 +1,6 @@
 <?php
 
-namespace Yuki\Http;
+namespace Framework\Http;
 
 class Response
 {

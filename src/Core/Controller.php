@@ -1,9 +1,9 @@
 <?php
 
-namespace Yuki\Core;
+namespace Framework\Core;
 
-use Yuki\Http\Request;
-use Yuki\Http\Response;
+use Framework\Http\Request;
+use Framework\Http\Response;
 
 abstract class Controller
 {
@@ -31,6 +31,13 @@ abstract class Controller
     $content = ob_get_clean();
 
     return new Response($content, 200, ['Content-Type' => 'text/html']);
+  }
+
+  public function json(array $data): Response
+  {
+    return new Response(json_encode($data), 200, [
+      'Content-Type' => 'application/json',
+    ]);
   }
 
   public function setRequest(Request $request): void

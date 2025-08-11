@@ -1,12 +1,13 @@
 <?php
 
-namespace Yuki\Http;
+namespace Framework\Http;
 
 use FastRoute\RouteCollector;
-use Yuki\Core\Controller;
-use Yuki\Core\Database;
-use Yuki\Http\Request;
-use Yuki\Http\Response;
+
+use Framework\Core\Controller;
+use Framework\Core\Database;
+use Framework\Http\Request;
+use Framework\Http\Response;
 
 use function FastRoute\simpleDispatcher;
 

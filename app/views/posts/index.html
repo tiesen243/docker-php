@@ -1,25 +1,67 @@
-<link rel="stylesheet" href="/css/posts/index.css" />
+<head>
+  <link rel="stylesheet" href="/css/posts/index.css" />
+</head>
 
-<main class="container post-page">
-  <div class="post-page__header">
-    <a href="/" class="post-page__back-btn"> &leftarrow; Back to Posts </a>
+<main class="container posts">
+  <div class="posts__header">
+    <h1 class="posts__title">Welcome to the Blog</h1>
 
-    <a
-      href="/posts/<?php echo htmlspecialchars($post['id']); ?>/edit"
-      class="post-page__edit-btn"
-    >
-      Edit Post
-    </a>
+    <a href="/posts/new" class="posts__create-btn"> Create New Post </a>
   </div>
 
-  <article class="post-page__article">
-    <h1 class="post-page__title"><?php echo htmlspecialchars($title); ?></h1>
-    <p class="post-page__date">
-      <?php echo date('F j, Y', strtotime($post['created_at'])); ?>
-    </p>
+  <?php if (isset($posts) && count($posts) > 0): ?>
+  <div class="posts">
+    <?php foreach ($posts as $post): ?>
+    <a
+      href="/posts/<?php echo htmlspecialchars($post['id']); ?>"
+      class="post-card"
+    >
+      <div class="post-card__header">
+        <h2 class="post-card__title">
+          <?php echo htmlspecialchars($post['title']); ?>
+        </h2>
+        <p class="post-card__date">
+          <?php echo date('F j, Y', strtotime($post['created_at'])); ?>
+        </p>
 
-    <hr class="post-page__separator" />
+        <form
+          data-slot="card-action"
+          action="/posts/<?php echo htmlspecialchars($post['id']); ?>/delete"
+          method="post"
+          class="post-card__delete-form"
+        >
+          <button type="submit" class="post-card__delete-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-trash2-icon lucide-trash-2"
+            >
+              <path d="M10 11v6" />
+              <path d="M14 11v6" />
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+              <path d="M3 6h18" />
+              <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+            </svg>
+          </button>
+        </form>
+      </div>
 
-    <p><?php echo htmlspecialchars($post['content']); ?></p>
-  </article>
+      <div class="post-card__content">
+        <p class="post-card__text">
+          <?php echo htmlspecialchars($post['content'] ?? ''); ?>
+        </p>
+      </div>
+    </a>
+    <?php endforeach; ?>
+  </div>
+  <?php else: ?>
+  <p class="posts__no-posts">No posts available.</p>
+  <?php endif; ?>
 </main>

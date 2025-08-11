@@ -1,6 +1,6 @@
 <?php
 
-namespace Yuki\Core;
+namespace Framework\Core;
 
 use PDO;
 
