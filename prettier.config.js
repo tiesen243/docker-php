@@ -11,6 +11,8 @@ const config = {
   jsxSingleQuote: true,
 
   plugins: ['@prettier/plugin-php'],
+
+  overrides: [{ files: 'app/views/**/*.php', options: { parser: 'html' } }],
 }
 
 export default config

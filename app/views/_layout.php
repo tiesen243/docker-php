@@ -12,12 +12,14 @@
     <link href="/css/globals.css" rel="stylesheet" />
 
     <title>
-      <?php echo htmlspecialchars((!empty($title)) ? $title.' | Yuki' : 'Yuki');
-      ?>
+      <?php echo htmlspecialchars( !empty($title) ? $title . ' | Yuki' : 'Yuki',
+      ); ?>
     </title>
     <meta
       name="description"
-      content="<?php echo htmlspecialchars($description ?? 'A modern PHP framework for building web applications.'); ?>"
+      content="<?php echo htmlspecialchars(
+        $description ?? 'A modern PHP framework for building web applications.',
+      ); ?>"
     />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>

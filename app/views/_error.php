@@ -7,8 +7,8 @@
     </h1>
     <div class="error__separator"></div>
     <p class="error__details">
-      <?php echo htmlspecialchars($details ?? 'An unexpected error occurred.');
-      ?>
+      <?php echo htmlspecialchars( $details ?? 'An unexpected error occurred.',
+      ); ?>
     </p>
   </div>
 </main>

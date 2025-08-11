@@ -9,10 +9,13 @@ abstract class Controller
 {
   protected ?Request $request = null;
 
-  public function render(string $template, ?array $data = []): Response
-  {
-    $viewPath = BASE_PATH . '/app/views/' . $template . '.html';
-    $layoutPath = BASE_PATH . '/app/views/_layout.html';
+  public function render(
+    string $template,
+    ?array $data = [],
+    ?string $layoutPath = BASE_PATH . '/app/views/_layout',
+  ): Response {
+    $viewPath = BASE_PATH . '/app/views/' . $template . '.php';
+    $layoutPath = $layoutPath . '.php';
 
     if (!file_exists($viewPath)) {
       return new Response('View not found', 404, [
