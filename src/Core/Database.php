@@ -9,6 +9,14 @@ class Database
   private static $instance = null;
   public ?PDO $pdo = null;
 
+  /**
+   * Private constructor to prevent direct instantiation. Use the create method
+   * to get an instance.
+   *
+   * @param string $connectionString The DSN for the database connection.
+   * @param string $username The username for the database connection.
+   * @param string $password The password for the database connection.
+   */
   public function __construct(
     string $connectionString,
     string $username,
@@ -17,6 +25,14 @@ class Database
     $this->pdo = new PDO($connectionString, $username, $password);
   }
 
+  /**
+   * Get the singleton instance of the Database class.
+   *
+   * @param string $connectionString The DSN for the database connection.
+   * @param string $username The username for the database connection.
+   * @param string $password The password for the database connection.
+   * @return static The singleton instance of the Database class.
+   */
   public static function create(
     string $connectionString,
     string $username,
@@ -28,6 +44,12 @@ class Database
     return self::$instance;
   }
 
+  /**
+   * Returns the active PDO database connection from the singleton Database instance.
+   *
+   * @throws \Exception If the database connection has not been initialized.
+   * @return PDO The active PDO connection.
+   */
   public static function getPdo(): PDO
   {
     return self::$instance->pdo ??

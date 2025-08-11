@@ -15,6 +15,9 @@ class Kernel
 {
   protected ?Database $db = null;
 
+  /**
+   * Kernel constructor initializes the database connection.
+   */
   public function __construct()
   {
     $this->db = Database::create(
@@ -24,6 +27,12 @@ class Kernel
     );
   }
 
+  /**
+   * Handle the incoming request and return a response.
+   *
+   * @param Request $request The incoming HTTP request.
+   * @return Response The HTTP response to be sent back to the client.
+   */
   public function handle(Request $request): Response
   {
     $dispatcher = simpleDispatcher(function (RouteCollector $r) {
