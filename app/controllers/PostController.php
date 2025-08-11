@@ -26,6 +26,12 @@ class PostController extends Controller
     ]);
   }
 
+  public function all(): Response
+  {
+    $posts = $this->post->all();
+    return $this->json($posts);
+  }
+
   public function show(string $id): Response
   {
     $post = $this->post->byId($id);
@@ -118,7 +124,7 @@ class PostController extends Controller
     }
 
     return new Response(null, 302, [
-      'Location' => '/',
+      'Location' => '/posts',
     ]);
   }
 }

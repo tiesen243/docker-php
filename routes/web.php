@@ -7,6 +7,7 @@ return [
   ['GET', '/', [HomeController::class, 'index']],
 
   ['GET', '/posts', [PostController::class, 'index']],
+  ['GET', '/posts/all', [PostController::class, 'all']],
   ['GET', '/posts/new', [PostController::class, 'create']],
   ['POST', '/posts/create', [PostController::class, 'store']],
   ['GET', '/posts/{id}', [PostController::class, 'show']],

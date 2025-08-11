@@ -35,14 +35,14 @@
   background-color: color-mix(in oklab, var(--secondary) 90%, transparent);
 }
 
-.posts {
+.posts__list {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
 }
 
 @media (min-width: 768px) {
-  .posts {
+  .posts__list {
     grid-template-columns: repeat(2, 1fr);
   }
 }

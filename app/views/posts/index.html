@@ -1,16 +1,13 @@
-<head>
-  <link rel="stylesheet" href="/css/posts/index.css" />
-</head>
+<link rel="stylesheet" href="/css/posts/index.css" />
 
 <main class="container posts">
   <div class="posts__header">
     <h1 class="posts__title">Welcome to the Blog</h1>
-
     <a href="/posts/new" class="posts__create-btn"> Create New Post </a>
   </div>
 
   <?php if (isset($posts) && count($posts) > 0): ?>
-  <div class="posts">
+  <div class="posts__list">
     <?php foreach ($posts as $post): ?>
     <a
       href="/posts/<?php echo htmlspecialchars($post['id']); ?>"
