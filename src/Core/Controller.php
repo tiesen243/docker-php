@@ -22,8 +22,8 @@ abstract class Controller
     ?array $data = [],
     ?string $layout = 'base',
   ): Response {
-    $viewPath = BASE_PATH . '/app/views/' . $template . '.php';
-    $layoutPath = BASE_PATH . '/app/views/_layouts/' . $layout . '.php';
+    $viewPath = BASE_PATH . '/app/Views/' . $template . '.php';
+    $layoutPath = BASE_PATH . '/app/Views/_layouts/' . $layout . '.php';
 
     if (!file_exists($viewPath)) {
       return new Response('View not found', 404, [
@@ -61,6 +61,7 @@ abstract class Controller
    * Set the request object for the controller.
    *
    * @param Request $request The request object.
+   * @return void
    */
   public function setRequest(Request $request): void
   {

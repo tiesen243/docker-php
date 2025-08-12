@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use PDO;
 
@@ -25,14 +25,21 @@ class Post
   public static function findMany(): array
   {
     $pdo = Database::getPdo();
-    $stmt = $pdo->query('SELECT * FROM post');
+    $stmt = $pdo->query(
+      "SELECT * 
+      FROM post",
+    );
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
   public static function findOne(string $id): ?array
   {
     $pdo = Database::getPdo();
-    $stmt = $pdo->prepare('SELECT * FROM post WHERE id = :id');
+    $stmt = $pdo->prepare(
+      "SELECT * 
+      FROM post 
+      WHERE id = :id",
+    );
     $stmt->execute(['id' => $id]);
     return $stmt->fetch(PDO::FETCH_ASSOC) ?: null;
   }
@@ -40,39 +47,35 @@ class Post
   public function save(): bool
   {
     $pdo = Database::getPdo();
-    print_r($this->id);
 
-    if (!empty($this->id)) {
+    $stmt = $pdo->prepare(
+      'UPDATE post 
+      SET title = :title, content = :content 
+      WHERE id = :id',
+    );
+    if (empty($this->id)) {
+      $this->id = $pdo->query('SELECT UUID()')->fetchColumn();
       $stmt = $pdo->prepare(
-        'UPDATE post SET title = :title, content = :content WHERE id = :id',
+        "INSERT INTO post (id, title, content, created_at) 
+        VALUES (:id, :title, :content, NOW())",
       );
-      return $stmt->execute([
-        'id' => $this->id,
-        'title' => $this->title,
-        'content' => $this->content,
-      ]);
-    } else {
-      $stmt = $pdo->prepare(
-        'INSERT INTO post (id, title, content, created_at) VALUES (UUID(), :title, :content, NOW())',
-      );
-      $success = $stmt->execute([
-        'title' => $this->title,
-        'content' => $this->content,
-      ]);
-      if ($success) {
-        $this->id = $pdo->lastInsertId();
-      }
-      return $success;
     }
+
+    return $stmt->execute([
+      'id' => $this->id,
+      'title' => $this->title,
+      'content' => $this->content,
+    ]);
   }
 
   public function delete(): bool
   {
     $pdo = Database::getPdo();
-    if (empty($this->id)) {
-      return false;
-    }
-    $stmt = $pdo->prepare('DELETE FROM post WHERE id = :id');
+    $stmt = $pdo->prepare(
+      'DELETE 
+      FROM post 
+      WHERE id = :id',
+    );
     return $stmt->execute(['id' => $this->id]);
   }
 }

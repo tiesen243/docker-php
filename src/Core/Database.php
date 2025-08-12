@@ -23,6 +23,10 @@ class Database
     string $password,
   ) {
     $this->pdo = new PDO($connectionString, $username, $password);
+
+    if (!$this->pdo) {
+      throw new \Exception('Failed to connect to the database');
+    }
   }
 
   /**
@@ -31,6 +35,7 @@ class Database
    * @param string $connectionString The DSN for the database connection.
    * @param string $username The username for the database connection.
    * @param string $password The password for the database connection.
+   *
    * @return static The singleton instance of the Database class.
    */
   public static function create(
@@ -47,8 +52,8 @@ class Database
   /**
    * Returns the active PDO database connection from the singleton Database instance.
    *
-   * @throws \Exception If the database connection has not been initialized.
    * @return PDO The active PDO connection.
+   * @throws \Exception If the database connection has not been initialized.
    */
   public static function getPdo(): PDO
   {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\controllers;
+namespace App\Controllers;
 
-use App\models\Post;
+use App\Models\Post;
 use Framework\Core\Controller;
 use Framework\Http\Response;
 

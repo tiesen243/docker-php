@@ -55,9 +55,6 @@ class Request
   {
     $uri = $this->server['REQUEST_URI'] ?? '';
     $parsedUri = parse_url($uri, PHP_URL_PATH) ?: '';
-    if ($parsedUri !== '/') {
-      $parsedUri = rtrim($parsedUri, '/');
-    }
 
     return [
       'uri' => $parsedUri,
@@ -65,6 +62,7 @@ class Request
       'ip' => $this->server['REMOTE_ADDR'] ?? '',
       'user_agent' => $this->server['HTTP_USER_AGENT'] ?? '',
       'host' => $this->server['HTTP_HOST'] ?? '',
+      'cookies' => $this->cookies,
     ];
   }
 
@@ -96,15 +94,5 @@ class Request
   public function files(): array
   {
     return $this->files;
-  }
-
-  /**
-   * Get the cookies from the request.
-   *
-   * @return array The cookies as an associative array.
-   */
-  public function cookies(): array
-  {
-    return $this->cookies;
   }
 }

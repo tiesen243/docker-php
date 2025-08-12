@@ -1,7 +1,7 @@
 <?php
 
-use App\controllers\HomeController;
-use App\controllers\PostController;
+use App\Controllers\HomeController;
+use App\Controllers\PostController;
 
 return [
   // Home routes

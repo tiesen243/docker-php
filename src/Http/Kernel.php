@@ -31,6 +31,7 @@ class Kernel
    * Handle the incoming request and return a response.
    *
    * @param Request $request The incoming HTTP request.
+   *
    * @return Response The HTTP response to be sent back to the client.
    */
   public function handle(Request $request): Response

@@ -12,7 +12,7 @@ const config = {
 
   plugins: ['@prettier/plugin-php'],
 
-  overrides: [{ files: 'app/views/**/*.php', options: { parser: 'html' } }],
+  overrides: [{ files: 'app/Views/**/*.php', options: { parser: 'html' } }],
 }
 
 export default config
