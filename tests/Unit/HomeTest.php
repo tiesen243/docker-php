@@ -6,7 +6,7 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
-use App\controllers\HomeController;
+use App\Controllers\HomeController;
 use Framework\Http\Response;
 
 class HomeTest extends TestCase

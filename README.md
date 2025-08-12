@@ -22,14 +22,17 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url> [your-app-name]
+   git clone git@github.com:tiesen243/docker-php.git [your-app-name]
    cd [your-app-name]
    ```
 
-2. **Install development dependencies (optional)**
+2. **Install dependencies**
 
    ```bash
-   # Install Prettier and prettier-plugin-php for PHP code formatting,
+   # Install Composer dependencies
+   composer install
+
+   # Install Prettier and prettier-plugin-php for PHP code formatting (optional)
    npm install
    ```
 
@@ -76,7 +79,7 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
   - Username: Value from `DB_USER` in `.env`
   - Password: Value from `DB_PASSWORD` in `.env`
 
-## 📁 Project Structure
+## Project Structure
 
 ```plaintext
 ├── app/                        # Application source code (controllers, models, views)
@@ -111,6 +114,6 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 - **Port**: 8081
 - **Purpose**: Web-based MySQL administration
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
