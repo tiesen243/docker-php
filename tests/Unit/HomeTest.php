@@ -11,7 +11,7 @@ use Framework\Http\Response;
 
 class HomeTest extends TestCase
 {
-  public function testIndexReturnsHomeViewWithPosts(): void
+  public function testIndexReturnsHomeView(): void
   {
     $controller = new HomeController();
     $response = $controller->index();

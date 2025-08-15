@@ -2,6 +2,8 @@
 
 namespace Framework\Core;
 
+use Framework\Http\Response;
+
 class Template
 {
   protected string $extends = '';
@@ -21,7 +23,7 @@ class Template
     }
   }
 
-  public function render($template, $data = [])
+  public function render($template, $data = []): Response
   {
     $this->extends = '';
 
@@ -40,10 +42,12 @@ class Template
       $content = ob_get_clean();
     }
 
-    return $content;
+    return new Response($content, 200, [
+      'Content-Type' => 'text/html; charset=UTF-8',
+    ]);
   }
 
-  private function compile($template)
+  private function compile($template): string
   {
     $templateFile =
       $this->templateDir .
@@ -76,7 +80,7 @@ class Template
     return $cacheFile;
   }
 
-  private function parse($content)
+  private function parse($content): string
   {
     // @extends directive
     $content = preg_replace(
