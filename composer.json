@@ -7,7 +7,7 @@
   "scripts": {
     "dev:up": "docker compose -f docker-compose.dev.yml up -d --remove-orphans",
     "dev:down": "docker compose -f docker-compose.dev.yml down -v",
-    "format": "./node_modules/.bin/prettier --check \"**/*.{css,js,php}\" --write --cache",
+    "format": "./node_modules/.bin/prettier --check \"**/*.{css,js,php}\" --write --cache --cache-location .cache/prettier",
     "prod:up": "docker compose -f docker-compose.prod.yml up -d --remove-orphans",
     "prod:down": "docker compose -f docker-compose.prod.yml down -v",
     "test": "./vendor/bin/phpunit --display-warnings --display-deprecations"

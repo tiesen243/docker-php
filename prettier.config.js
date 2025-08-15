@@ -10,9 +10,7 @@ const config = {
   trailingComma: 'all',
   jsxSingleQuote: true,
 
-  plugins: ['@prettier/plugin-php'],
-
-  overrides: [{ files: 'app/Views/**/*.php', options: { parser: 'html' } }],
+  plugins: ['@prettier/plugin-php', 'prettier-plugin-blade'],
 }
 
 export default config
