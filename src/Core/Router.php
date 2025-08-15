@@ -2,22 +2,52 @@
 
 namespace Framework\Core;
 
+use Framework\Http\Request;
+
 class Router
 {
   private static array $routes = [];
 
-  public static function get(string $path, callable $callback): void
+  public static function get(string $path, $callback): void
   {
-    self::$routes['GET'][$path] = $callback;
+    self::$routes['GET'][] = [
+      'path' => $path,
+      'callback' => $callback,
+    ];
   }
 
-  public static function post(string $path, callable $callback): void
+  public static function post(string $path, $callback): void
   {
-    self::$routes['POST'][$path] = $callback;
+    self::$routes['POST'][] = [
+      'path' => $path,
+      'callback' => $callback,
+    ];
   }
 
-  public static function getRoutes(): array
+  public static function handler(Request $request)
   {
-    return self::$routes;
+    $method = $request->getServerInfo()['method'] ?? 'GET';
+    $uri = $request->getServerInfo()['uri'] ?? '/';
+    $routes = self::$routes[$method] ?? [];
+
+    foreach ($routes as $route) {
+      $pattern = preg_replace('#\{([^}]+)\}#', '([^/]+)', $route['path']);
+      $pattern = '#^' . $pattern . "$#";
+
+      if (preg_match($pattern, $uri, $matches)) {
+        array_shift($matches);
+
+        if (is_array($route['callback']) && count($route['callback']) === 2) {
+          [$controller, $method] = $route['callback'];
+          $controller = new $controller();
+          $controller->setRequest($request);
+          return call_user_func_array([$controller, $method], $matches);
+        } elseif (is_callable($route['callback'])) {
+          return call_user_func_array($route['callback'], $matches);
+        } else {
+          throw new \Exception('Invalid route callback');
+        }
+      }
+    }
   }
 }
