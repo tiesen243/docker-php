@@ -58,7 +58,7 @@ class PostController extends Controller
     if (!$post) {
       return $this->view('_error');
     }
-    return $this->view('posts.[id]', [
+    return $this->view('posts.show', [
       'post' => $post,
     ]);
   }
