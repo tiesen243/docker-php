@@ -4,6 +4,8 @@ namespace Framework\Core;
 
 class Template
 {
+  private static $instance = null;
+
   protected string $extends = '';
   protected array $sections = [];
   protected array $resourceDeps = [];
@@ -20,6 +22,25 @@ class Template
         );
       }
     }
+  }
+
+  public static function create(
+    ?string $templateDir = BASE_PATH . '/resources/views',
+    ?string $resourceDir = BASE_PATH . '/resources',
+    ?string $cacheDir = BASE_PATH . '/.cache/views',
+  ): static {
+    if (self::$instance === null) {
+      self::$instance = new static($templateDir, $resourceDir, $cacheDir);
+    }
+    return self::$instance;
+  }
+
+  public static function getInstance(): static
+  {
+    if (self::$instance === null) {
+      throw new \RuntimeException('Template instance not created yet.');
+    }
+    return self::$instance;
   }
 
   public function render($template, $data = []): string

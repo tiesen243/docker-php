@@ -49,7 +49,7 @@ class Router
       }
     }
 
-    $templateEngine = new Template();
+    $templateEngine = Template::getInstance();
     return new Response($templateEngine->render('not-found'));
   }
 }

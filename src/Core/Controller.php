@@ -11,7 +11,7 @@ abstract class Controller
 
   protected function view(string $template, array $data = []): Response
   {
-    $templateEngine = new Template();
+    $templateEngine = Template::getInstance();
     $content = $templateEngine->render($template, $data);
 
     return new Response($content, 200, [
