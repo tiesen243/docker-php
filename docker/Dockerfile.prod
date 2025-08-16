@@ -23,9 +23,6 @@ COPY . /var/www/html
 # Install PHP dependencies via Composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Seed the database
-RUN php seed.php
-
 # Set working directory for subsequent commands
 WORKDIR /var/www/html/public
 
