@@ -19,7 +19,7 @@ class Application
     require_once $basePath . '/routes/web.php';
 
     Database::create(
-      "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};charset=utf8mb4",
+      "mysql:host={$_ENV['DB_HOST']};port={$_ENV['DB_PORT']};dbname={$_ENV['DB_NAME']};charset=utf8mb4",
       $_ENV['DB_USER'],
       $_ENV['DB_PASSWORD'],
     );

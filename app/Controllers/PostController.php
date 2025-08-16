@@ -11,7 +11,9 @@ class PostController extends Controller
   public function all()
   {
     $page = $this->request->query()['page'] ?? '1';
-    $results = Post::findMany($page);
+    $limit = $this->request->query()['limit'] ?? '10';
+    $results = Post::findMany($page, $limit);
+
     return new Response(
       json_encode([
         'page' => $results['page'],
@@ -43,7 +45,8 @@ class PostController extends Controller
   public function index()
   {
     $page = $this->request->query()['page'] ?? '1';
-    $results = Post::findMany($page);
+    $limit = $this->request->query()['limit'] ?? '9';
+    $results = Post::findMany($page, $limit);
 
     return $this->view('posts.index', [
       'posts' => $results['posts'],

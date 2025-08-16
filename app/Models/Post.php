@@ -14,23 +14,26 @@ class Post
     private string $createdAt = '',
   ) {}
 
-  public static function findMany(?string $page = '1'): array
-  {
+  public static function findMany(
+    string $page = '1',
+    string $limit = '10',
+  ): array {
     $pdo = Database::getPdo();
     $stmt = $pdo->prepare(
       'SELECT * FROM post
       ORDER BY created_at DESC
-      LIMIT 10
+      LIMIT :limit
       OFFSET :offset',
     );
-    $offset = ($page - 1) * 10;
+    $offset = ($page - 1) * $limit;
     $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
     $stmt->execute();
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $totalPagesStmt = $pdo->query('SELECT COUNT(*) FROM post');
     $totalPosts = $totalPagesStmt->fetchColumn();
-    $totalPages = ceil($totalPosts / 10);
+    $totalPages = ceil($totalPosts / $limit);
 
     return [
       'page' => $page,
