@@ -24,7 +24,7 @@ services:
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
     volumes:
-      - '../database:/docker-entrypoint-initdb.d'
+      - './database:/docker-entrypoint-initdb.d'
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 20s
