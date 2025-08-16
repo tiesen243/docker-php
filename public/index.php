@@ -13,5 +13,5 @@ Template::create(
   sys_get_temp_dir() . '/.cache/views',
 );
 
-$app = new Application();
+$app = new Application(BASE_PATH);
 $app->run();

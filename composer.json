@@ -5,6 +5,8 @@
   "license": "MIT",
   "type": "project",
   "scripts": {
+    "db:up": "docker compose --env-file .env -f docker/docker-compose.yml up -d --remove-orphans",
+    "db:down": "docker compose --env-file .env -f docker/docker-compose.yml down -v",
     "dev:up": "docker compose --env-file .env -f docker/docker-compose.dev.yml up -d --remove-orphans",
     "dev:down": "docker compose --env-file .env -f docker/docker-compose.dev.yml down -v",
     "format": "./node_modules/.bin/prettier --check \"**/*.{css,js,php}\" --write --cache",

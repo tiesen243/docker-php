@@ -11,9 +11,9 @@ class Template
   protected array $resourceDeps = [];
 
   public function __construct(
-    private ?string $templateDir = BASE_PATH . '/resources/views',
-    private ?string $resourceDir = BASE_PATH . '/resources',
-    private ?string $cacheDir = BASE_PATH . '/.cache/views',
+    private string $templateDir,
+    private string $resourceDir,
+    private string $cacheDir,
   ) {
     if (!is_dir($this->cacheDir)) {
       if (!mkdir($this->cacheDir, 0775, true) && !is_dir($this->cacheDir)) {
