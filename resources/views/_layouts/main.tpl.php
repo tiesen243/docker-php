@@ -22,7 +22,7 @@
   </head>
 
   <body>
-    @include('components.header')
+    @include('_components.header')
 
     @yield('content')
   </body>

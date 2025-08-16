@@ -25,9 +25,9 @@ class Template
   }
 
   public static function create(
-    ?string $templateDir = BASE_PATH . '/resources/views',
-    ?string $resourceDir = BASE_PATH . '/resources',
-    ?string $cacheDir = BASE_PATH . '/.cache/views',
+    string $templateDir,
+    string $resourceDir,
+    string $cacheDir,
   ): static {
     if (self::$instance === null) {
       self::$instance = new static($templateDir, $resourceDir, $cacheDir);

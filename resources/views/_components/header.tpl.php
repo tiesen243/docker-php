@@ -10,7 +10,7 @@
     </nav>
 
     @include(
-      'components.ui.button',
+      '_components.ui.button',
       [
         'label' => '<i class="fa-regular"></i>',
         'variant' => 'ghost',

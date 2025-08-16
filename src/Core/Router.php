@@ -50,6 +50,6 @@ class Router
     }
 
     $templateEngine = Template::getInstance();
-    return new Response($templateEngine->render('not-found'));
+    return new Response($templateEngine->render('_error'));
   }
 }
