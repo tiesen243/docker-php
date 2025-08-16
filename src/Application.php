@@ -23,8 +23,10 @@ class Application
     );
   }
 
-  public function run(Request $request): void
+  public function run(): void
   {
+    $request = Request::create();
+
     $result = Router::handler($request);
     if ($result instanceof Response) {
       $result->send();

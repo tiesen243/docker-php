@@ -11,6 +11,8 @@ const config = {
   jsxSingleQuote: true,
 
   plugins: ['@prettier/plugin-php', 'prettier-plugin-blade'],
+
+  overrides: [{ files: '*.tpl.php', options: { parser: 'blade' } }],
 }
 
 export default config

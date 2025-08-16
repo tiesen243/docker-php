@@ -8,6 +8,7 @@ class Template
 {
   protected string $extends = '';
   protected array $sections = [];
+  protected array $resourceDeps = [];
 
   public function __construct(
     private ?string $templateDir = BASE_PATH . '/resources/views',
@@ -50,10 +51,7 @@ class Template
   private function compile($template): string
   {
     $templateFile =
-      $this->templateDir .
-      '/' .
-      str_replace('.', '/', $template) .
-      '.blade.php';
+      $this->templateDir . '/' . str_replace('.', '/', $template) . '.tpl.php';
     $cacheFile = $this->cacheDir . '/' . md5($templateFile) . '.php';
 
     $cacheDir = dirname($cacheFile);
@@ -61,20 +59,39 @@ class Template
       mkdir($cacheDir, 0775, true);
     }
 
-    if (
-      !file_exists($cacheFile) ||
-      filemtime($cacheFile) < filemtime($templateFile)
-    ) {
+    $needsRecompile = !file_exists($cacheFile);
+
+    if (!$needsRecompile) {
+      if (filemtime($cacheFile) < filemtime($templateFile)) {
+        $needsRecompile = true;
+      } else {
+        $metaFile = $cacheFile . '.meta';
+        if (file_exists($metaFile)) {
+          $deps = unserialize(file_get_contents($metaFile));
+          foreach ($deps as $dep) {
+            if (file_exists($dep) && filemtime($cacheFile) < filemtime($dep)) {
+              $needsRecompile = true;
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    if ($needsRecompile) {
       if (!file_exists($templateFile)) {
         throw new \Exception("Template file not found: $templateFile");
       }
 
+      $this->resourceDeps = [];
       $content = file_get_contents($templateFile);
       $parsed = $this->parse($content);
 
       if (file_put_contents($cacheFile, $parsed) === false) {
         throw new \RuntimeException("Failed to write cache file: $cacheFile");
       }
+
+      file_put_contents($cacheFile . '.meta', serialize($this->resourceDeps));
     }
 
     return $cacheFile;
@@ -144,7 +161,10 @@ class Template
     $content = preg_replace_callback(
       '/@resources\(\s*[\"\'](.+?)[\"\']\s*\)/',
       function ($matches) {
-        $filePath = $this->resourceDir . '/' . $matches[1];
+        $relativePath = $matches[1];
+        $filePath = $this->resourceDir . '/' . ltrim($relativePath, '/');
+        $this->resourceDeps[] = $filePath;
+
         if (!file_exists($filePath)) {
           return "<!-- Resource file not found: {$filePath} -->";
         }
