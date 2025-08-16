@@ -46,6 +46,7 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
    Edit `.env` file and set your database credentials:
 
    ```env
+   DB_HOST=127.0.0.1
    DB_NAME=your_database_name
    DB_USER=your_username
    DB_PASSWORD=your_secure_password
@@ -59,6 +60,9 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 
    # For production
    composer prod:up
+
+   # For database only
+   composer db:up
    ```
 
 6. **Stopping the containers**
@@ -69,6 +73,15 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 
    # For production
    composer prod:down
+
+    # For database only
+    composer db:down
+   ```
+
+7. **Start the application locally** (if not using Docker)
+
+   ```bash
+   composer dev
    ```
 
 ## Access Points
@@ -83,15 +96,12 @@ A containerized PHP development environment with Apache, MySQL, and phpMyAdmin u
 
 ```plaintext
 ├── app/                        # Application source code (controllers, models, views)
-├── database/                   # Database SQL files, migrations, and seed data
+├── docker/                     # Docker configuration files
 ├── public/                     # Public web root (index.php, CSS, JS, favicon, etc.)
+├── resources/                  # Application resources (views, css, js)
 ├── routes/                     # Application route definitions
 ├── src/                        # Core framework and HTTP handling code
 ├── tests/                      # Unit, feature, and integration tests
-├── Dockerfile.dev              # Development PHP image configuration
-├── Dockerfile.prod             # Production PHP image configuration
-├── docker-compose.dev.yml      # Docker Compose config for development services
-├── docker-compose.prod.yml     # Docker Compose config for production services
 └── .env                        # Actual environment variables file (from example)
 ```
 
