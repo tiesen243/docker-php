@@ -218,6 +218,10 @@ class Template
       $content,
     );
 
+    // {{-- comment --}} syntax
+    $content = preg_replace('/{{--([\s\S]*?)--}}/', '', $content);
+
+    // {!! $variable !!} syntax
     $content = preg_replace(
       '/\{!!\s*(.+?)\s*!!\}/',
       '<?php echo $1; ?>',
