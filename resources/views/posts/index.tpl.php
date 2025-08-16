@@ -6,7 +6,7 @@
 
 @section('content')
   <main class="container posts-page">
-    <h1 class="posts-page__title">Posts</h1>
+    <h1 class="sr-only">Posts</h1>
 
     <div class="posts-page__list">
       @foreach ($posts as $post)

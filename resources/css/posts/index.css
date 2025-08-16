@@ -6,11 +6,6 @@
   padding-bottom: calc(var(--spacing) * 4);
 }
 
-.posts-page__title {
-  font-size: var(--font-size-2xl);
-  margin-bottom: calc(var(--spacing) * 6);
-}
-
 .posts-page__list {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
