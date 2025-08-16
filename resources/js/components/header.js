@@ -11,6 +11,24 @@ function updateThemeIcon() {
   }
 }
 
+const disableAnimation = (nonce) => {
+  const css = document.createElement('style')
+  if (nonce) css.setAttribute('nonce', nonce)
+  css.appendChild(
+    document.createTextNode(
+      `*,*::before,*::after{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}`,
+    ),
+  )
+  document.head.appendChild(css)
+
+  return () => {
+    ;(() => window.getComputedStyle(document.body))()
+    setTimeout(() => {
+      document.head.removeChild(css)
+    }, 1)
+  }
+}
+
 const savedTheme = localStorage.getItem('theme')
 if (savedTheme) {
   document.documentElement.classList.toggle('dark', savedTheme === 'dark')
@@ -23,10 +41,14 @@ if (savedTheme) {
 updateThemeIcon()
 
 themeToggle.addEventListener('click', () => {
+  const restoreAnimation = disableAnimation(themeToggle.getAttribute('nonce'))
+
   document.documentElement.classList.toggle('dark')
   localStorage.setItem(
     'theme',
     document.documentElement.classList.contains('dark') ? 'dark' : 'light',
   )
   updateThemeIcon()
+
+  restoreAnimation()
 })
