@@ -1,0 +1,56 @@
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 6);
+  border-radius: var(--radius-xl);
+  padding-top: calc(var(--spacing) * 6);
+  padding-bottom: calc(var(--spacing) * 6);
+  box-shadow: var(--shadow-sm);
+}
+
+.card__header {
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-template-rows: auto auto;
+  align-items: start;
+  gap: calc(var(--spacing) * 1.5);
+  padding-left: calc(var(--spacing) * 6);
+  padding-right: calc(var(--spacing) * 6);
+}
+
+.card__header:has([data-slot='card-action']) {
+  grid-template-columns: 1fr auto;
+}
+
+.card__title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.card__description {
+  font-size: var(--font-size-sm);
+  color: var(--muted-foreground);
+}
+
+.card__action {
+  grid-column-start: 2;
+  grid-row: span 2 / span 2;
+  grid-row-start: 1;
+  align-self: start;
+  justify-self: end;
+  z-index: 50;
+}
+
+.card__content {
+  padding-inline: calc(var(--spacing) * 6);
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  padding-inline: calc(var(--spacing) * 6);
+}

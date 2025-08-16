@@ -1,0 +1,10 @@
+.post-form {
+  display: grid;
+  gap: calc(var(--spacing) * 4);
+  padding: calc(var(--spacing) * 4) 0;
+}
+
+.post-form__field {
+  display: grid;
+  gap: calc(var(--spacing) * 2);
+}

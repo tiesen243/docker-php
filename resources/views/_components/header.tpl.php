@@ -4,22 +4,20 @@
 
     <nav class="header__nav">
       <ul>
+        <li><a href="/posts">Posts</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
     </nav>
 
-    @include(
-      '_components.ui.button',
-      [
-        'label' => '<i class="fa-regular"></i>',
-        'variant' => 'ghost',
-        'size' => 'icon',
-        'class' => 'header__theme-toggle',
-      ]
-    )
+    <button
+      class="ui-button ui-button--ghost ui-button--size-icon header__theme-toggle"
+    >
+      <i class="fa-regular"></i>
+    </button>
   </div>
 </header>
 
 @resources('css/components/header.css')
 @resources('js/components/header.js')
+@resources('css/components/ui/button.css')

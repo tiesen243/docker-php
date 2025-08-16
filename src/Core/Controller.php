@@ -26,6 +26,13 @@ abstract class Controller
     ]);
   }
 
+  protected function redirect(string $url, int $statusCode = 302): Response
+  {
+    return new Response('', $statusCode, [
+      'Location' => $url,
+    ]);
+  }
+
   public function setRequest(Request $request): void
   {
     $this->request = $request;

@@ -1,4 +1,4 @@
-.button {
+.ui-button {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -15,90 +15,97 @@
 
   transition: all 0.3s ease;
 }
-.button svg {
+
+.ui-button svg {
   pointer-events: none;
   flex-shrink: 0;
   width: calc(var(--spacing) * 4);
   height: calc(var(--spacing) * 4);
 }
-.button:disabled {
+
+.ui-button:focus-visible {
+  border: 1px solid var(--ring);
+  box-shadow: 0 0 0 calc(3px) color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+.ui-button:disabled {
   opacity: 0.5;
 }
 
-.button--default {
+.ui-button--default {
   background-color: var(--primary);
   color: var(--primary-foreground);
   box-shadow: var(--shadow-xs);
 }
-.button--default:hover {
+.ui-button--default:hover {
   background-color: color-mix(in oklab, var(--primary) 80%, transparent);
 }
 
-.button--secondary {
+.ui-button--secondary {
   background-color: var(--secondary);
   color: var(--secondary-foreground);
   box-shadow: var(--shadow-xs);
 }
-.button--secondary:hover {
+.ui-button--secondary:hover {
   background-color: color-mix(in oklab, var(--secondary) 80%, transparent);
 }
 
-.button--ghost {
+.ui-button--ghost {
   background-color: transparent;
 }
-.button--ghost:hover {
+.ui-button--ghost:hover {
   background-color: var(--accent);
 }
-.dark .button--ghost:hover {
+.dark .ui-button--ghost:hover {
   background-color: color-mix(in oklab, var(--accent) 50%, transparent);
 }
 
-.button--outline {
+.ui-button--outline {
   background-color: var(--background);
   color: var(--foreground);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-xs);
 }
-.button--outline:hover {
+.ui-button--outline:hover {
   background-color: var(--accent);
   color: var(--accent-foreground);
 }
-.dark .button--outline {
+.dark .ui-button--outline {
   background-color: color-mix(in oklab, var(--input) 30%, transparent);
   border-color: var(--input);
 }
-.dark .button--outline:hover {
+.dark .ui-button--outline:hover {
   background-color: color-mix(in oklab, var(--accent) 50%, transparent);
 }
 
-.button--size-default {
+.ui-button--size-default {
   height: calc(var(--spacing) * 9);
   padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
 }
-.button--size-default:has(> svg) {
+.ui-button--size-default:has(> svg) {
   padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
 }
 
-.button--size-sm {
+.ui-button--size-sm {
   height: calc(var(--spacing) * 8);
   gap: calc(var(--spacing) * 1.5);
   border-radius: var(--radius-md);
   padding: 0 calc(var(--spacing) * 3);
 }
-.button--size-sm:has(> svg) {
+.ui-button--size-sm:has(> svg) {
   padding: 0 calc(var(--spacing) * 2.5);
 }
 
-.button--size-lg {
+.ui-button--size-lg {
   height: calc(var(--spacing) * 10);
   border-radius: var(--radius-md);
   padding: 0 calc(var(--spacing) * 6);
 }
-.button--size-lg:has(> svg) {
+.ui-button--size-lg:has(> svg) {
   padding: 0 calc(var(--spacing) * 4);
 }
 
-.button--size-icon {
+.ui-button--size-icon {
   width: calc(var(--spacing) * 9);
   height: calc(var(--spacing) * 9);
 }
