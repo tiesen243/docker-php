@@ -4,3 +4,6 @@ vendor/
 
 # Test files
 tests/
+
+# Environment variables
+.env*

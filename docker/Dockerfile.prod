@@ -1,22 +1,33 @@
 FROM php:8.4-apache
 
+# Install system dependencies: zip and unzip
 RUN apt-get update && apt-get install -y \
     zip \
     unzip
+
+# Install PHP extensions: MySQLi, PDO, PDO MySQL
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+# Enable Apache mod_rewrite for URL rewriting
 RUN a2enmod rewrite
 
+# Copy Composer binary from official Composer image
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# Copy custom Apache virtual host configuration
 COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
+# Copy the application code into the container
 COPY . /var/www/html
 
+# Install PHP dependencies via Composer
 RUN composer install --no-dev --optimize-autoloader
 
+# Set working directory for subsequent commands
 WORKDIR /var/www/html/public
 
+# Expose port 80 for HTTP
 EXPOSE 80
 
+# Start Apache in the foreground when the container runs
 CMD ["apache2-foreground"]

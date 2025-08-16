@@ -9,7 +9,12 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
     volumes:
-      - '../:/var/www/html'
+      - '../app:/var/www/html/app'
+      - '../public:/var/www/html/public'
+      - '../resources:/var/www/html/resources'
+      - '../routes:/var/www/html/routes'
+      - '../src:/var/www/html/src'
+      - '../vendor:/var/www/html/vendor'
     ports:
       - 8080:80
       - 443:443

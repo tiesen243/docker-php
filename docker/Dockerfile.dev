@@ -1,12 +1,19 @@
 FROM php:8.4-apache
 
+# Install PHP extensions: MySQLi, PDO, PDO MySQL
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
+# Enable Apache mod_rewrite for URL rewriting
 RUN a2enmod rewrite
+
+# Copy custom Apache site configuration into container
 COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
 
+# Set working directory inside the container
 WORKDIR /var/www/html/public
 
+# Expose port 80 for HTTP
 EXPOSE 80
 
+# Start Apache in the foreground when the container runs
 CMD ["apache2-foreground"]
