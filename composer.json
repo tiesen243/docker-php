@@ -5,13 +5,14 @@
   "license": "MIT",
   "type": "project",
   "scripts": {
-    "db:up": "docker compose --env-file .env -f docker/docker-compose.yml up -d --remove-orphans",
     "db:down": "docker compose --env-file .env -f docker/docker-compose.yml down -v",
-    "dev:up": "docker compose --env-file .env -f docker/docker-compose.dev.yml up -d --remove-orphans",
+    "db:up": "docker compose --env-file .env -f docker/docker-compose.yml up -d --remove-orphans",
+    "dev": "php -S localhost:8080 -t public",
     "dev:down": "docker compose --env-file .env -f docker/docker-compose.dev.yml down -v",
+    "dev:up": "docker compose --env-file .env -f docker/docker-compose.dev.yml up -d --remove-orphans",
     "format": "./node_modules/.bin/prettier --check \"**/*.{css,js,php}\" --write --cache",
-    "prod:up": "docker compose --env-file .env -f docker/docker-compose.prod.yml up -d --remove-orphans",
     "prod:down": "docker compose --env-file .env -f docker/docker-compose.prod.yml down -v",
+    "prod:up": "docker compose --env-file .env -f docker/docker-compose.prod.yml up -d --remove-orphans",
     "test": "./vendor/bin/phpunit --display-warnings --display-deprecations"
   },
   "autoload": {
