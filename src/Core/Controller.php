@@ -5,9 +5,19 @@ namespace Framework\Core;
 use Framework\Http\Request;
 use Framework\Http\Response;
 
-abstract class Controller extends Template
+abstract class Controller
 {
   protected ?Request $request = null;
+
+  protected function view(string $template, array $data = []): Response
+  {
+    $templateEngine = new Template();
+    $content = $templateEngine->render($template, $data);
+
+    return new Response($content, 200, [
+      'Content-Type' => 'text/html; charset=UTF-8',
+    ]);
+  }
 
   protected function json(array $data): Response
   {

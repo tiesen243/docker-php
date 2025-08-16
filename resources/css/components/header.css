@@ -1,0 +1,40 @@
+.header {
+  background-color: color-mix(in oklab, var(--background) 70%, transparent);
+  border-bottom: 1px solid var(--border);
+  height: calc(var(--spacing) * 14);
+  display: flex;
+  align-items: center;
+}
+
+.header__inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--spacing) * 4);
+}
+
+.header__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+.header__nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header__nav ul {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 2);
+}
+
+.header__nav ul > li {
+  color: var(--muted-foreground);
+  font-size: var(--font-size-sm);
+  transition: color 0.3s ease;
+}
+.header__nav ul > li:hover {
+  color: var(--foreground);
+}

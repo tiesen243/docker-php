@@ -2,8 +2,6 @@
 
 namespace Framework\Core;
 
-use Framework\Http\Response;
-
 class Template
 {
   protected string $extends = '';
@@ -24,7 +22,7 @@ class Template
     }
   }
 
-  public function render($template, $data = []): Response
+  public function render($template, $data = []): string
   {
     $this->extends = '';
 
@@ -43,9 +41,18 @@ class Template
       $content = ob_get_clean();
     }
 
-    return new Response($content, 200, [
-      'Content-Type' => 'text/html; charset=UTF-8',
-    ]);
+    return $content;
+  }
+
+  public function renderPartial($template, $data = []): string
+  {
+    extract($data, EXTR_SKIP);
+
+    $cacheFile = $this->compile($template);
+
+    ob_start();
+    require $cacheFile;
+    return ob_get_clean();
   }
 
   private function compile($template): string
@@ -122,9 +129,17 @@ class Template
     );
 
     // @include directive
-    $content = preg_replace(
-      "/@include\([\"'](.+?)[\"']\)/",
-      '<?php echo $this->render("$1"); ?>',
+    $content = preg_replace_callback(
+      "/@include\(\s*[\"'](.+?)[\"']\s*(?:,\s*(.+?))?\s*\)/s",
+      function ($matches) {
+        $view = $matches[1];
+        $data = isset($matches[2]) ? $matches[2] : '[]';
+        return '<?php echo $this->renderPartial("' .
+          addslashes($view) .
+          '", ' .
+          $data .
+          '); ?>';
+      },
       $content,
     );
 
@@ -179,6 +194,12 @@ class Template
         }
         return "<!-- Unsupported resource type: {$ext} -->";
       },
+      $content,
+    );
+
+    $content = preg_replace(
+      '/\{!!\s*(.+?)\s*!!\}/',
+      '<?php echo $1; ?>',
       $content,
     );
 

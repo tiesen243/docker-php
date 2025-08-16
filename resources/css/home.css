@@ -1,0 +1,4 @@
+.home-page {
+  padding-top: calc(var(--spacing) * 4);
+  padding-bottom: calc(var(--spacing) * 4);
+}

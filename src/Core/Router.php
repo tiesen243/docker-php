@@ -3,6 +3,7 @@
 namespace Framework\Core;
 
 use Framework\Http\Request;
+use Framework\Http\Response;
 
 class Router
 {
@@ -44,10 +45,11 @@ class Router
           return call_user_func_array([$controller, $method], $matches);
         } elseif (is_callable($route['callback'])) {
           return call_user_func_array($route['callback'], $matches);
-        } else {
-          throw new \Exception('Invalid route callback');
         }
       }
     }
+
+    $templateEngine = new Template();
+    return new Response($templateEngine->render('not-found'));
   }
 }
