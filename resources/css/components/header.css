@@ -18,7 +18,8 @@
 }
 
 .header__title {
-  font-size: var(--font-size-lg);
+  font-size: var(--text-lg);
+  line-height: var(--text-lg-line-height);
   font-weight: 700;
 }
 
@@ -36,8 +37,9 @@
 
 .header__nav ul > li {
   color: var(--muted-foreground);
-  font-size: var(--font-size-sm);
-  transition: color 0.3s ease;
+  font-size: var(--text-sm);
+  line-height: var(--text-sm-line-height);
+  transition: color 150ms ease-in-out;
 }
 .header__nav ul > li:hover {
   color: var(--foreground);

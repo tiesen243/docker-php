@@ -9,11 +9,12 @@
   outline: none;
   border: none;
 
-  font-size: var(--font-size-sm);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm-line-height);
   font-weight: medium;
   white-space: nowrap;
 
-  transition: all 0.3s ease;
+  transition: all 150ms ease-in-out;
 }
 
 .ui-button svg {

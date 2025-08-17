@@ -18,6 +18,8 @@
   </div>
 </header>
 
-@resources('css/components/header.css')
-@resources('js/components/header.js')
-@resources('css/components/ui/button.css')
+<head>
+  @resources('css/components/header.css')
+  @resources('css/components/ui/button.css')
+  @resources('js/theme.js')
+</head>

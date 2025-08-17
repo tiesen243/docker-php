@@ -18,6 +18,8 @@
       </div>
     </div>
   </main>
+@endsection
 
+@section('styles')
   @resources('css/not-found.css')
 @endsection

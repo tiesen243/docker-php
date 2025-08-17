@@ -23,6 +23,11 @@ COPY . /var/www/html
 # Install PHP dependencies via Composer
 RUN composer install --no-dev --optimize-autoloader
 
+# Create cache directories
+RUN mkdir -p /var/www/html/.cache/views \
+    && chown -R www-data:www-data /var/www/html/.cache \
+    && chmod -R 775 /var/www/html/.cache
+
 # Set working directory for subsequent commands
 WORKDIR /var/www/html/public
 

@@ -16,6 +16,8 @@
       est laborum.
     </p>
   </main>
+@endsection
 
-  @resources('css/home.css')
+@section('styles')
+  @resources('css/index.css')
 @endsection

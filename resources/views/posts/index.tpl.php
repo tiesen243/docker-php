@@ -4,6 +4,10 @@
   Posts
 @endsection
 
+@section('meta')
+  <meta name="description" content="List of all posts" />
+@endsection
+
 @section('content')
   <main class="container posts-page">
     <h1 class="sr-only">Posts</h1>
@@ -50,7 +54,9 @@
       @endif
     </div>
   </main>
+@endsection
 
+@section('styles')
   @resources('css/posts/index.css')
   @resources('css/components/ui/button.css')
   @resources('css/components/ui/card.css')

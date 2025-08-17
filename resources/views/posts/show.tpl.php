@@ -4,6 +4,10 @@
   {{ $post->getTitle() }}
 @endsection
 
+@section('meta')
+  <meta name="description" content="{{ $post->getContent() }}" />
+@endsection
+
 @section('content')
   <main class="container post-page">
     <article class="post">
@@ -13,6 +17,8 @@
       <div class="post__content">{{ $post->getContent() }}</div>
     </article>
   </main>
+@endsection
 
-  @resources('css/posts/[id].css')
+@section('styles')
+  @resources('css/posts/show.css')
 @endsection

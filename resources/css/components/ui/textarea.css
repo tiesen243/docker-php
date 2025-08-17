@@ -7,11 +7,10 @@
   border-radius: var(--radius-md);
   background-color: transparent;
   padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
-  font-size: var(--font-size-base);
   box-shadow: var(--shadow-xs);
   transition:
-    color 0.3s ease,
-    box-shadow 0.3s ease;
+    color 150ms ease-in-out,
+    box-shadow 150ms ease-in-out;
   outline: none;
 }
 
@@ -39,6 +38,7 @@
 
 @media (min-width: 768px) {
   .ui-textarea {
-    font-size: var(--font-size-sm);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm-line-height);
   }
 }

@@ -4,6 +4,10 @@
   Create Post
 @endsection
 
+@section('meta')
+  <meta name="description" content="Edit an existing post" />
+@endsection
+
 @section('content')
   <main class="container">
     <form action="/posts/store" method="POST" class="post-form">
@@ -38,7 +42,9 @@
       </button>
     </form>
   </main>
+@endsection
 
+@section('styles')
   @resources('css/posts/form.css')
   @resources('css/components/ui/input.css')
   @resources('css/components/ui/textarea.css')

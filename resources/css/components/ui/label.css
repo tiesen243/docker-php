@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   gap: calc(var(--spacing) * 2);
-  font-size: var(--font-size-sm);
+  font-size: var(--text-sm);
+  line-height: var(--text-sm-line-height);
   font-weight: 500;
   user-select: none;
 }
