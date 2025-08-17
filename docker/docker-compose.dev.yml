@@ -5,6 +5,7 @@ services:
       dockerfile: docker/Dockerfile.dev
     environment:
       - DB_HOST=db
+      - DB_PORT=3306
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}

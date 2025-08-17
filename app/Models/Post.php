@@ -14,25 +14,25 @@ class Post
     private string $createdAt = '',
   ) {}
 
-  public static function findMany(
-    string $page = '1',
-    string $limit = '10',
-  ): array {
+  public function findMany(int $page = 1, int $limit = 10): array
+  {
     $pdo = Database::getPdo();
-    $stmt = $pdo->prepare(
-      'SELECT * FROM post
+
+    $stmt = $pdo->prepare('
+      SELECT id, title, content, created_at 
+      FROM post
       ORDER BY created_at DESC
       LIMIT :limit
-      OFFSET :offset',
-    );
+      OFFSET :offset
+    ');
     $offset = ($page - 1) * $limit;
     $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
     $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
     $stmt->execute();
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $totalPagesStmt = $pdo->query('SELECT COUNT(*) FROM post');
-    $totalPosts = $totalPagesStmt->fetchColumn();
+    $stmt = $pdo->query('SELECT COUNT(*) FROM post');
+    $totalPosts = $stmt->fetchColumn();
     $totalPages = ceil($totalPosts / $limit);
 
     return [
@@ -49,10 +49,15 @@ class Post
     ];
   }
 
-  public static function findOne(string $id): ?Post
+  public function findOne(string $id): ?Post
   {
     $pdo = Database::getPdo();
-    $stmt = $pdo->prepare('SELECT * FROM post WHERE id = :id');
+
+    $stmt = $pdo->prepare('
+      SELECT id, title, content, created_at 
+      FROM post
+      WHERE id = :id
+    ');
     $stmt->bindParam(':id', $id);
     $stmt->execute();
     $post = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -72,15 +77,17 @@ class Post
   public function save(): void
   {
     $pdo = Database::getPdo();
-    $stmt = $pdo->prepare(
-      'INSERT INTO post (id, title, content, created_at)
-      VALUES (UUID(), :title, :content, NOW())',
-    );
+    $stmt = $pdo->prepare('
+      INSERT INTO post (id, title, content, created_at)
+      VALUES (UUID(), :title, :content, NOW())
+    ');
 
     if (!empty($this->id)) {
-      $stmt = $pdo->prepare(
-        'UPDATE post SET title = :title, content = :content WHERE id = :id',
-      );
+      $stmt = $pdo->prepare('
+        UPDATE post 
+        SET title = :title, content = :content 
+        WHERE id = :id
+      ');
       $stmt->bindParam(':id', $this->id);
     }
 
@@ -92,9 +99,11 @@ class Post
       );
     }
 
-    $stmt = $pdo->prepare(
-      'SELECT id FROM post WHERE title = :title AND content = :content',
-    );
+    $stmt = $pdo->prepare('
+      SELECT id 
+      FROM post 
+      WHERE title = :title AND content = :content
+    ');
     $stmt->bindParam(':title', $this->title);
     $stmt->bindParam(':content', $this->content);
     $stmt->execute();
@@ -113,7 +122,10 @@ class Post
     }
 
     $pdo = Database::getPdo();
-    $stmt = $pdo->prepare('DELETE FROM post WHERE id = :id');
+    $stmt = $pdo->prepare('
+      DELETE FROM post 
+      WHERE id = :id
+    ');
     $stmt->bindParam(':id', $this->id);
     if (!$stmt->execute()) {
       throw new \Exception(
@@ -136,16 +148,6 @@ class Post
   public function getContent(): string
   {
     return $this->content;
-  }
-
-  public function getProperties(): array
-  {
-    return [
-      'id' => $this->id,
-      'title' => $this->title,
-      'content' => $this->content,
-      'created_at' => $this->createdAt,
-    ];
   }
 
   public function getCreatedAt(): string

@@ -20,7 +20,12 @@ class Response
     echo $this->content;
   }
 
-  public function getContent(): ?string
+  public function getStatusCode(): int
+  {
+    return $this->statusCode;
+  }
+
+  public function getBody(): ?string
   {
     return $this->content;
   }

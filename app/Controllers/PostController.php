@@ -8,45 +8,62 @@ use Framework\Http\Response;
 
 class PostController extends Controller
 {
+  private Post $post;
+
+  public function __construct($post = null)
+  {
+    $this->post = $post ?: new Post();
+  }
+
   public function all()
   {
     $page = $this->request->query()['page'] ?? '1';
-    $limit = $this->request->query()['limit'] ?? '10';
-    $results = Post::findMany($page, $limit);
+    $limit = (int) $this->request->query()['limit'] ?? '10';
+    $results = $this->post->findMany($page, $limit);
 
     return new Response(
       json_encode([
         'page' => $results['page'],
         'totalPages' => $results['totalPages'],
         'posts' => array_map(function ($post) {
-          return $post->getProperties();
+          return [
+            'id' => $post->getId(),
+            'title' => $post->getTitle(),
+            'content' => $post->getContent(),
+            'created_at' => $post->getCreatedAt(),
+          ];
         }, $results['posts']),
       ]),
       200,
-      [
-        'Content-Type' => 'application/json',
-      ],
+      ['Content-Type' => 'application/json'],
     );
   }
 
   public function byId(string $id)
   {
-    $post = Post::findOne($id);
+    $post = $this->post->findOne($id);
     if (!$post) {
       return new Response(json_encode(['error' => 'Post not found']), 404, [
         'Content-Type' => 'application/json',
       ]);
     }
-    return new Response(json_encode($post->getProperties()), 200, [
-      'Content-Type' => 'application/json',
-    ]);
+    return new Response(
+      json_encode([
+        'id' => $post->getId(),
+        'title' => $post->getTitle(),
+        'content' => $post->getContent(),
+        'created_at' => $post->getCreatedAt(),
+      ]),
+      200,
+      ['Content-Type' => 'application/json'],
+    );
   }
 
   public function index()
   {
     $page = $this->request->query()['page'] ?? '1';
     $limit = $this->request->query()['limit'] ?? '9';
-    $results = Post::findMany($page, $limit);
+    $results = $this->post->findMany($page, $limit);
 
     return $this->view('posts.index', [
       'posts' => $results['posts'],
@@ -57,9 +74,11 @@ class PostController extends Controller
 
   public function show(string $id)
   {
-    $post = Post::findOne($id);
+    $post = $this->post->findOne($id);
     if (!$post) {
-      return $this->view('_error');
+      return $this->view('_error', [
+        'details' => 'The post you are trying to view does not exist.',
+      ]);
     }
     return $this->view('posts.show', [
       'post' => $post,
@@ -73,9 +92,11 @@ class PostController extends Controller
 
   public function edit(string $id)
   {
-    $post = Post::findOne($id);
+    $post = $this->post->findOne($id);
     if (!$post) {
-      return $this->view('_error');
+      return $this->view('_error', [
+        'details' => 'The post you are trying to edit does not exist.',
+      ]);
     }
     return $this->view('posts.edit', [
       'post' => $post,
@@ -98,7 +119,7 @@ class PostController extends Controller
   public function delete()
   {
     $body = $this->request->body();
-    $post = Post::findOne($body['id'] ?? '');
+    $post = $this->post->findOne($body['id'] ?? '');
     if (!$post) {
       return new Response(json_encode(['error' => 'Post not found']), 404, [
         'Content-Type' => 'application/json',

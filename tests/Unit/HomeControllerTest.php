@@ -9,17 +9,18 @@ use PHPUnit\Framework\TestCase;
 use App\Controllers\HomeController;
 use Framework\Http\Response;
 
-class HomeTest extends TestCase
+class HomeControllerTest extends TestCase
 {
   public function testIndexReturnsHomeView(): void
   {
     $controller = new HomeController();
     $response = $controller->index();
 
-    $this->assertInstanceOf(
-      Response::class,
-      $response,
-      'Expected index() to return a Response',
+    $this->assertInstanceOf(Response::class, $response);
+    $this->assertEquals(200, $response->getStatusCode());
+    $this->assertStringContainsString(
+      'lorem ipsum dolor sit amet',
+      $response->getBody(),
     );
   }
 }
