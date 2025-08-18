@@ -6,6 +6,7 @@ namespace Framework;
 
 use Framework\Core\Database;
 use Framework\Core\Router;
+use Framework\Core\Template;
 use Framework\Http\Request;
 use Framework\Http\Response;
 
@@ -22,18 +23,32 @@ class Application
       "mysql:host={$_ENV['DB_HOST']};port={$_ENV['DB_PORT']};dbname={$_ENV['DB_NAME']};charset=utf8mb4",
       $_ENV['DB_USER'],
       $_ENV['DB_PASSWORD'],
+    )->seed();
+
+    Template::create(
+      $basePath . '/resources/views',
+      $basePath . '/resources',
+      $basePath . '/.cache/views',
     );
   }
 
   public function run(): void
   {
     $request = Request::create();
+    $templateEngine = Template::getInstance();
 
-    $result = Router::handler($request);
-    if ($result instanceof Response) {
-      $result->send();
-    } else {
-      echo $result;
+    try {
+      $result = Router::handler($request, $templateEngine);
+      if ($result instanceof Response) {
+        $result->send();
+      } else {
+        echo $result;
+      }
+    } catch (\Throwable $e) {
+      echo $templateEngine->render('_error', [
+        'message' => '500',
+        'details' => $e->getMessage(),
+      ]);
     }
   }
 

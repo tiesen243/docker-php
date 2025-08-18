@@ -25,8 +25,10 @@ class Router
     ];
   }
 
-  public static function handler(Request $request)
-  {
+  public static function handler(
+    Request $request,
+    Template $templateEngine,
+  ): string|Response {
     $method = $request->getServerInfo()['method'] ?? 'GET';
     $uri = $request->getServerInfo()['uri'] ?? '/';
     $routes = self::$routes[$method] ?? [];
@@ -38,18 +40,24 @@ class Router
       if (preg_match($pattern, $uri, $matches)) {
         array_shift($matches);
 
-        if (is_array($route['callback']) && count($route['callback']) === 2) {
-          [$controller, $method] = $route['callback'];
-          $controller = new $controller();
-          $controller->setRequest($request);
-          return call_user_func_array([$controller, $method], $matches);
-        } elseif (is_callable($route['callback'])) {
-          return call_user_func_array($route['callback'], $matches);
+        try {
+          if (is_array($route['callback']) && count($route['callback']) === 2) {
+            [$controller, $method] = $route['callback'];
+            $controller = new $controller();
+            $controller->setRequest($request);
+            return call_user_func_array([$controller, $method], $matches);
+          } elseif (is_callable($route['callback'])) {
+            return call_user_func_array($route['callback'], $matches);
+          }
+        } catch (\Error $e) {
+          return $templateEngine->render('_error', [
+            'message' => '500',
+            'details' => $e->getMessage(),
+          ]);
         }
       }
     }
 
-    $templateEngine = Template::getInstance();
-    return new Response($templateEngine->render('_error'));
+    return $templateEngine->render('_error');
   }
 }
