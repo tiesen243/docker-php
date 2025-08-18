@@ -9,11 +9,11 @@
     <div class="not-found-page__inner">
       <div class="not-found-page__content">
         <h1 class="not-found-page__title">
-          {{ $message ?? '404' }}
+          {{ $message ?? 'Opps!' }}
         </h1>
         <div class="not-found-page__separator"></div>
         <p class="not-found-page__subtitle">
-          {{ $details ?? 'This page could not be found.' }}
+          {{ $details ?? 'An unexpected error occurred.' }}
         </p>
       </div>
     </div>
@@ -21,5 +21,5 @@
 @endsection
 
 @section('styles')
-  @resources('css/not-found.css')
+  @resources('css/error.css')
 @endsection

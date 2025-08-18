@@ -20,7 +20,7 @@ class HomeControllerTest extends TestCase
     $this->assertEquals(200, $response->getStatusCode());
     $this->assertStringContainsString(
       'lorem ipsum dolor sit amet',
-      $response->getBody(),
+      $response->getContent(),
     );
   }
 }

@@ -9,7 +9,7 @@ class Router
 {
   private static array $routes = [];
 
-  public static function get(string $path, $callback): void
+  public static function get(string $path, array|callable $callback): void
   {
     self::$routes['GET'][] = [
       'path' => $path,
@@ -17,7 +17,7 @@ class Router
     ];
   }
 
-  public static function post(string $path, $callback): void
+  public static function post(string $path, array|callable $callback): void
   {
     self::$routes['POST'][] = [
       'path' => $path,
@@ -29,8 +29,8 @@ class Router
     Request $request,
     Template $templateEngine,
   ): string|Response {
-    $method = $request->getServerInfo()['method'] ?? 'GET';
-    $uri = $request->getServerInfo()['uri'] ?? '/';
+    $uri = $request->getUri() ?? '/';
+    $method = $request->getMethod() ?? 'GET';
     $routes = self::$routes[$method] ?? [];
 
     foreach ($routes as $route) {
@@ -58,6 +58,9 @@ class Router
       }
     }
 
-    return $templateEngine->render('_error');
+    return $templateEngine->render('_error', [
+      'message' => '404',
+      'details' => 'This page could not be found.',
+    ]);
   }
 }

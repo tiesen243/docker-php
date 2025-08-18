@@ -40,7 +40,7 @@ class Application
     try {
       $result = Router::handler($request, $templateEngine);
       if ($result instanceof Response) {
-        $result->send();
+        echo $result->getContent();
       } else {
         echo $result;
       }

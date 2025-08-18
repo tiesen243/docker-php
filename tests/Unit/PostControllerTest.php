@@ -1,6 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Tests\Unit;
+
 use PHPUnit\Framework\TestCase;
+
 use App\Controllers\PostController;
 use App\Models\Post;
 
@@ -59,7 +64,7 @@ class PostControllerTest extends TestCase
         'content' => 'Test Content',
         'created_at' => '2023-10-01 12:00:00',
       ]),
-      $response->getBody(),
+      $response->getContent(),
     );
   }
 }

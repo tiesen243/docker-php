@@ -30,19 +30,16 @@ class Request
     return self::$instance;
   }
 
-  public function getServerInfo(): array
+  public function getUri(): string
   {
     $uri = $this->server['REQUEST_URI'] ?? '';
     $parsedUri = parse_url($uri, PHP_URL_PATH) ?: '';
+    return $parsedUri;
+  }
 
-    return [
-      'uri' => $parsedUri,
-      'method' => $this->server['REQUEST_METHOD'] ?? '',
-      'ip' => $this->server['REMOTE_ADDR'] ?? '',
-      'user_agent' => $this->server['HTTP_USER_AGENT'] ?? '',
-      'host' => $this->server['HTTP_HOST'] ?? '',
-      'cookies' => $this->cookies,
-    ];
+  public function getMethod(): string
+  {
+    return $this->server['REQUEST_METHOD'] ?? '';
   }
 
   public function query(): array
@@ -52,11 +49,6 @@ class Request
 
   public function body(): array
   {
-    return $this->post;
-  }
-
-  public function files(): array
-  {
-    return $this->files;
+    return [...$this->post, ...$this->files];
   }
 }

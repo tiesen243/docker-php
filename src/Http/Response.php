@@ -15,17 +15,12 @@ class Response
     }
   }
 
-  public function send(): void
-  {
-    echo $this->content;
-  }
-
   public function getStatusCode(): int
   {
     return $this->statusCode;
   }
 
-  public function getBody(): ?string
+  public function getContent(): ?string
   {
     return $this->content;
   }

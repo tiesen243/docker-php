@@ -9,6 +9,11 @@ abstract class Controller
 {
   protected ?Request $request = null;
 
+  public function setRequest(Request $request): void
+  {
+    $this->request = $request;
+  }
+
   protected function view(string $template, array $data = []): Response
   {
     $templateEngine = Template::getInstance();
@@ -31,10 +36,5 @@ abstract class Controller
     return new Response('', $statusCode, [
       'Location' => $url,
     ]);
-  }
-
-  public function setRequest(Request $request): void
-  {
-    $this->request = $request;
   }
 }
